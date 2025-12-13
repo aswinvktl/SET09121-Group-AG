@@ -46,13 +46,12 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+### CMake / build ###
+build/                  # full build folder (labs say do not track this)[file:26]
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
 
-*.o *.exe *.dll *.so build/ CMakeCache.txt CMakeFiles/
-.vscode/ .idea/
-
-
-# End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
+# IDE junk
+.idea/
