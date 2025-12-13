@@ -1,0 +1,15 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/game.dir/src/GameSystem.cpp.o"
+  "CMakeFiles/game.dir/src/GameSystem.cpp.o.d"
+  "CMakeFiles/game.dir/src/main.cpp.o"
+  "CMakeFiles/game.dir/src/main.cpp.o.d"
+  "CMakeFiles/game.dir/src/scenes/CemeteryScene.cpp.o"
+  "CMakeFiles/game.dir/src/scenes/CemeteryScene.cpp.o.d"
+  "bin/game"
+  "bin/game.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/game.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

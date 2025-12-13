@@ -51,4 +51,8 @@
 .history
 .ionide
 
+*.o *.exe *.dll *.so build/ CMakeCache.txt CMakeFiles/
+.vscode/ .idea/
+
+
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
