@@ -1,24 +1,23 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../GameSystem.h"  // FIXED: ../GameSystem.h (not ../../)
+#include "../GameSystem.h"
 
 class CemeteryScene : public Scene {
 public:
-    CemeteryScene();  // Load assets + setup
-
-    // LAB INTERFACE - Pong style
-    void update(float dt) override;      
-    void render(sf::RenderWindow& window) override;  
-    void handleEvent(sf::Event& event) override;     
-
-private:
-    // SIMPLE RECTANGLES - Pong lab style
-    sf::RectangleShape background_rect_;    // Dark cemetery bg
-    sf::RectangleShape ghost_rect_;         // Player ghost WASD
-    sf::RectangleShape grave1_rect_;        // Level 1 grave
-    sf::RectangleShape grave2_rect_;        // Level 2 grave  
-    sf::RectangleShape grave3_rect_;        // Level 3 grave
+    CemeteryScene();  // setup ghost and graves
+    void update(float dt) override;      // update ghost position
+    void render(sf::RenderWindow& window) override;  // draw cemetery
+    void handleEvent(sf::Event& event) override;     // WASD input here
     
-    sf::Vector2f ghost_pos_;                // Ghost position
-    float ghost_speed_ = 200.f;             // Pixels per second
+private:
+    sf::RectangleShape background_rect_;
+    sf::RectangleShape ghost_rect_;
+    sf::RectangleShape grave1_rect_;
+    sf::RectangleShape grave2_rect_;
+    sf::RectangleShape grave3_rect_;
+    
+    sf::Vector2f ghost_pos_;
+    float ghost_speed_ = 200.f;
+
+    bool is_overlapping(const sf::RectangleShape& a, const sf::RectangleShape& b);
 };

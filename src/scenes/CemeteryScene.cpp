@@ -1,4 +1,5 @@
 #include "CemeteryScene.h"
+#include <iostream>
 
 // setup ghost and 3 graves 
 CemeteryScene::CemeteryScene() {
@@ -60,5 +61,20 @@ void CemeteryScene::handleEvent(sf::Event& event) {
         if (event.key.code == sf::Keyboard::D) {
             ghost_pos_.x += ghost_speed_;
         }
+
+        // interact with graves using E
+        if (event.key.code == sf::Keyboard::E) {
+            if (is_overlapping(ghost_rect_, grave1_rect_)) {
+                std::cout << "Level 1 selected (pool)\n";
+            } else if (is_overlapping(ghost_rect_, grave2_rect_)) {
+                std::cout << "Level 2 selected (battery)\n";
+            } else if (is_overlapping(ghost_rect_, grave3_rect_)) {
+                std::cout << "Level 3 selected (guards)\n";
+            }
+        }
     }
+}
+
+bool CemeteryScene::is_overlapping(const sf::RectangleShape& a, const sf::RectangleShape& b) {
+    return a.getGlobalBounds().intersects(b.getGlobalBounds());
 }
