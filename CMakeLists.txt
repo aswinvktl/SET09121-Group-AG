@@ -7,16 +7,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
 
+# --- SFML ---
 add_subdirectory(lib/SFML)
 set(SFML_INCS lib/SFML/include)
 
+# --- Auto-discover all cpp files ---
+file(GLOB_RECURSE GAME_SOURCES
+    CONFIGURE_DEPENDS
+    src/*.cpp
+)
+
 add_executable(game
-    src/main.cpp
-    src/levels.cpp
-    src/systems/GameSystem.cpp
-    src/scenes/CemeteryScene.cpp
-    src/scenes/Level1Scene.cpp
-    src/scenes/Level2Scene.cpp
+    ${GAME_SOURCES}
 )
 
 target_include_directories(game PRIVATE

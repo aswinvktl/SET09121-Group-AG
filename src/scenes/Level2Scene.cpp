@@ -19,10 +19,10 @@ void Level2Scene::render(sf::RenderWindow& window) {
 }
 
 void Level2Scene::handleEvent(sf::Event& event) {
-    if (event.type != sf::Event::KeyPressed)
-        return;
+    if (event.type == sf::Event::KeyPressed &&
+        event.key.code == sf::Keyboard::Escape) {
 
-    if (event.key.code == sf::Keyboard::Escape) {
-        GameSystem::setActiveScene(Levels::cemetery);
+        Levels::pausedFrom = Levels::level2;
+        GameSystem::setActiveScene(Levels::pause);
     }
 }
