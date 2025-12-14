@@ -1,8 +1,10 @@
 #include "CemeteryScene.h"
+#include "Level3Scene.h"
 #include <iostream>
 
+
 // setup ghost and 3 graves 
-CemeteryScene::CemeteryScene() {
+CemeteryScene::CemeteryScene(GameSystem* game) : game_(game) {
     // ghost/player in middle
     ghost_rect_.setSize(sf::Vector2f(40.f, 40.f));
     ghost_rect_.setFillColor(sf::Color(200, 200, 200, 255));
@@ -69,7 +71,7 @@ void CemeteryScene::handleEvent(sf::Event& event) {
             } else if (is_overlapping(ghost_rect_, grave2_rect_)) {
                 std::cout << "Level 2 selected (battery)\n";
             } else if (is_overlapping(ghost_rect_, grave3_rect_)) {
-                std::cout << "Level 3 selected (guards)\n";
+                game_->setScene(std::make_unique<Level3Scene>(game_));  // switch to level 3 scene
             }
         }
     }

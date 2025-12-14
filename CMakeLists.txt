@@ -14,6 +14,7 @@ add_executable(game
     src/main.cpp 
     src/GameSystem.cpp 
     src/scenes/CemeteryScene.cpp
+    src/scenes/Level3Scene.cpp
 )
 
 

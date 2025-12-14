@@ -18,6 +18,9 @@ public:
     GameSystem();
     void run();
 
+// Switch to a new scene
+    void setScene(std::unique_ptr<Scene> scene);
+
 private:
     sf::RenderWindow window_;
     std::unique_ptr<Scene> current_scene_;

@@ -5,7 +5,7 @@
 GameSystem::GameSystem() : 
     window_(sf::VideoMode(1280, 720), "Ghost Redemption:Hub") {
     window_.setFramerateLimit(60);
-    current_scene_ = std::make_unique<CemeteryScene>();
+    current_scene_ = std::make_unique<CemeteryScene>(this);
 }
 
 void GameSystem::run() {
@@ -48,4 +48,8 @@ void GameSystem::render() {
         current_scene_->render(window_);
     }
     window_.display();
+}
+
+void GameSystem::setScene(std::unique_ptr<Scene> scene) {
+    current_scene_ = std::move(scene);
 }
