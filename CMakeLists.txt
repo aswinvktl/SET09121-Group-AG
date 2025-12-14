@@ -10,16 +10,22 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${OUTPUT_DIRECTORY})
 add_subdirectory(lib/SFML)
 set(SFML_INCS lib/SFML/include)
 
-add_executable(game 
-    src/main.cpp 
-    src/GameSystem.cpp 
+add_executable(game
+    src/main.cpp
+    src/levels.cpp
+    src/systems/GameSystem.cpp
     src/scenes/CemeteryScene.cpp
+    src/scenes/Level1Scene.cpp
+    src/scenes/Level2Scene.cpp
 )
 
+target_include_directories(game PRIVATE
+    src
+    ${SFML_INCS}
+)
 
-target_include_directories(game PRIVATE ${SFML_INCS})
-target_link_libraries(game 
-    sfml-graphics 
-    sfml-window 
+target_link_libraries(game
+    sfml-graphics
+    sfml-window
     sfml-system
 )

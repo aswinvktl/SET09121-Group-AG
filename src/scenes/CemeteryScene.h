@@ -1,23 +1,25 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "../GameSystem.h"
+#include "scenes/Scene.h"
 
 class CemeteryScene : public Scene {
 public:
-    CemeteryScene();  // setup ghost and graves
-    void update(float dt) override;      // update ghost position
-    void render(sf::RenderWindow& window) override;  // draw cemetery
-    void handleEvent(sf::Event& event) override;     // WASD input here
-    
-private:
-    sf::RectangleShape background_rect_;
-    sf::RectangleShape ghost_rect_;
-    sf::RectangleShape grave1_rect_;
-    sf::RectangleShape grave2_rect_;
-    sf::RectangleShape grave3_rect_;
-    
-    sf::Vector2f ghost_pos_;
-    float ghost_speed_ = 200.f;
+    CemeteryScene();
 
-    bool is_overlapping(const sf::RectangleShape& a, const sf::RectangleShape& b);
+    void update(float dt) override;
+    void render(sf::RenderWindow& window) override;
+    void handleEvent(sf::Event& event) override;
+
+private:
+    // background,graves and ghost
+    sf::RectangleShape backgroundRect;
+    sf::RectangleShape ghostRect;
+    sf::RectangleShape grave1Rect;
+    sf::RectangleShape grave2Rect;
+    sf::RectangleShape grave3Rect;
+
+    sf::Vector2f ghostPos;
+    float ghostSpeed = 200.f;
+
+    bool isOverlapping(const sf::RectangleShape& a, const sf::RectangleShape& b);
 };
