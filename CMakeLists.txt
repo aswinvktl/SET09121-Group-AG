@@ -19,7 +19,8 @@ file(GLOB_RECURSE GAME_SOURCES
 
 add_executable(game
     ${GAME_SOURCES}
-)
+ "src/scenes/Level3Scene.h" "src/scenes/Level3Scene.cpp")
+target_compile_features(game PRIVATE cxx_std_17)
 
 target_include_directories(game PRIVATE
     src

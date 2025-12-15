@@ -9,7 +9,10 @@ struct Levels {
     static std::shared_ptr<Scene> cemetery;
     static std::shared_ptr<Scene> level1;
     static std::shared_ptr<Scene> level2;
+    static std::shared_ptr<Scene> level3;
     static std::shared_ptr<Scene> pausedFrom;
 
     static bool level1Complete;
+    static bool level3Complete;                
+
 };

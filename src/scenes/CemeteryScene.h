@@ -27,7 +27,7 @@ private:
     sf::Sprite grave1Sprite;
     sf::Sprite grave2Sprite;
     sf::Sprite grave3Sprite;
-    sf::IntRect graveRect = {0, 0, 32, 32}; // placeholder rect
+    sf::IntRect graveRect = {0, 0, 32, 32}; 
 
     sf::Font font;
     sf::Text prompt;

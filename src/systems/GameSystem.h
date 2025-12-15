@@ -7,6 +7,7 @@ class GameSystem {
 public:
   static void start();
   static void setActiveScene(const std::shared_ptr<Scene>& scene);
+  static void quit();
 
 private:
   static sf::RenderWindow window_;

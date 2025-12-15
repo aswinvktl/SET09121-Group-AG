@@ -1,4 +1,7 @@
+#include <cstdio>
+#include <fstream>
 #include "systems/GameSystem.h"
+#include "assets/Assets.h"
 
 sf::RenderWindow GameSystem::window_;
 sf::Clock GameSystem::clock_;
@@ -8,8 +11,34 @@ void GameSystem::setActiveScene(const std::shared_ptr<Scene>& scene) {
     current_scene_ = scene;
 }
 
+void GameSystem::quit() {
+    window_.close();
+}
+
 void GameSystem::start() {
-    window_.create(sf::VideoMode(1280, 720), "Ghost Redemption");
+    printf("START CALLED\n");
+    fflush(stdout);
+
+    sf::ContextSettings settings;
+    settings.majorVersion = 2;
+    settings.minorVersion = 1;
+
+    window_.create(
+        sf::VideoMode(1280, 720),
+        "Ghost Redemption",
+        sf::Style::Default,
+        settings
+    );
+
+    Assets::loadTexture(
+        "ghost",
+        "resources/textures/characters/ghost.png"
+    );
+    Assets::loadTexture(
+        "tiles_grass",
+        "resources/textures/tiles/tiles_grass.png"
+    );
+
     window_.setFramerateLimit(60);
 
     while (window_.isOpen()) {

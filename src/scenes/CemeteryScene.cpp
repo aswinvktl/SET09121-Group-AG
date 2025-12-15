@@ -19,7 +19,7 @@ bool CemeteryScene::isOverlapping(const sf::RectangleShape& a, const sf::Rectang
 }
 
 CemeteryScene::CemeteryScene() {
-    grassTile.setTexture(Assets::getTexture("grass"));
+    grassTile.setTexture(Assets::getTexture("tiles_grass"));
     grassTile.setTextureRect({0, 0, 32, 32});
     grassTile.setScale(2.f, 2.f);
 
@@ -99,6 +99,7 @@ void CemeteryScene::render(sf::RenderWindow& window) {
     }
 
     grave1Rect.setFillColor(Levels::level1Complete ? sf::Color(60, 160, 80) : sf::Color(80, 60, 40));
+    grave3Sprite.setColor(Levels::level3Complete ? sf::Color(160, 255, 160) : sf::Color::White);
 
     if (hasProps) {
         grave1Sprite.setColor(Levels::level1Complete ? sf::Color(160, 255, 160) : sf::Color::White);
@@ -121,10 +122,15 @@ void CemeteryScene::handleEvent(sf::Event& event) {
     if (event.key.code == sf::Keyboard::E) {
         if (isOverlapping(ghostHitbox, grave1Rect)) {
             GameSystem::setActiveScene(Levels::level1);
-        } else if (isOverlapping(ghostHitbox, grave2Rect)) {
+        }
+        else if (isOverlapping(ghostHitbox, grave2Rect)) {
             GameSystem::setActiveScene(Levels::level2);
         }
-    } else if (event.key.code == sf::Keyboard::Escape) {
+        else if (isOverlapping(ghostHitbox, grave3Rect)) {
+            GameSystem::setActiveScene(Levels::level3);
+        }
+    }
+    else if (event.key.code == sf::Keyboard::Escape) {
         Levels::pausedFrom = Levels::cemetery;
         GameSystem::setActiveScene(Levels::pause);
     }
