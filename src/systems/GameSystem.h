@@ -8,6 +8,9 @@ public:
   static void start();
   static void setActiveScene(const std::shared_ptr<Scene>& scene);
 
+  static void quit();
+  static sf::RenderWindow& window();
+
 private:
   static sf::RenderWindow window_;
   static sf::Clock clock_;

@@ -2,6 +2,7 @@
 
 #include "scenes/Scene.h"
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class CemeteryScene : public Scene {
 public:
@@ -12,26 +13,37 @@ public:
     void handleEvent(sf::Event& event) override;
 
 private:
+    // tiles
     sf::Sprite grassTile;
+    sf::Sprite stoneTile;
 
+    // player (ghost)
     sf::Sprite ghostSprite;
     sf::RectangleShape ghostHitbox;
     sf::Vector2f ghostPos;
     float ghostSpeed = 280.0f;
 
+    // graves (rects are still the interaction/hit boxes)
     sf::RectangleShape grave1Rect;
     sf::RectangleShape grave2Rect;
     sf::RectangleShape grave3Rect;
 
-    bool hasProps = false;
-    sf::Sprite grave1Sprite;
-    sf::Sprite grave2Sprite;
-    sf::Sprite grave3Sprite;
-    sf::IntRect graveRect = {0, 0, 32, 32}; // placeholder rect
+    // grave visuals
+    bool hasGraveTexture = false;
+    bool hasFlowerTexture = false;
+    sf::Sprite grave1Sprite, grave2Sprite, grave3Sprite;
 
+    // labels under graves
     sf::Font font;
-    sf::Text prompt;
+    sf::Text banner;
+    sf::Text interact;
+    sf::Text level1Label, level2Label, level3Label;
 
-    static bool isOverlapping(const sf::RectangleShape& a, const sf::RectangleShape& b);
+    // blockers
+    std::vector<sf::RectangleShape> blockers;
+
     static sf::Vector2f normalizeOrZero(sf::Vector2f v);
+    static bool overlaps(const sf::RectangleShape& a, const sf::RectangleShape& b);
+
+    void setupLevelLabel(sf::Text& t, const sf::String& s, sf::Vector2f pos);
 };

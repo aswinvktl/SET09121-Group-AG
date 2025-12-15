@@ -12,4 +12,5 @@ struct Levels {
     static std::shared_ptr<Scene> pausedFrom;
 
     static bool level1Complete;
+    static bool muted;
 };
