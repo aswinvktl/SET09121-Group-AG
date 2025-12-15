@@ -3,6 +3,7 @@
 #include "assets/Assets.h"
 #include "levels.h"
 #include "systems/GameSystem.h"
+#include "utils/SaveSystem.h"
 
 #include <cmath>
 
@@ -113,11 +114,16 @@ CemeteryScene::CemeteryScene() {
         setupSprite(grave3Sprite, grave3Rect.getPosition());
     }
 
-    // MUSIC (global gameplay loop)
     GameSystem::playMusic("resources/music/gameplay.wav", true);
 }
 
 void CemeteryScene::update(float dt) {
+    // Ending condition: all levels complete
+    if (Levels::level1Complete && Levels::level2Complete) {
+        GameSystem::setActiveScene(Levels::ending);
+        return;
+    }
+
     sf::Vector2f input(0.f, 0.f);
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) input.y -= 1.f;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) input.y += 1.f;
@@ -144,7 +150,6 @@ void CemeteryScene::update(float dt) {
 
     ghostSprite.setPosition(ghostPos);
 
-    // swap grave1 to flowerbed after level 1 complete
     if (hasGraveTexture) {
         if (hasFlowerTexture && Levels::level1Complete) {
             grave1Sprite.setTexture(Assets::getTexture("flowerbed"), true);
@@ -153,7 +158,6 @@ void CemeteryScene::update(float dt) {
         }
     }
 
-    // keep visuals aligned
     if (hasGraveTexture) {
         grave1Sprite.setPosition(grave1Rect.getPosition());
         grave2Sprite.setPosition(grave2Rect.getPosition());
@@ -166,14 +170,12 @@ void CemeteryScene::update(float dt) {
 }
 
 void CemeteryScene::render(sf::RenderWindow& window) {
-    // grass base
     for (int y = 0; y < 12; ++y)
         for (int x = 0; x < 20; ++x) {
             grassTile.setPosition(x * 64.f, y * 64.f);
             window.draw(grassTile);
         }
 
-    // stone cross lanes
     for (int y = 1; y < 11; ++y) {
         stoneTile.setPosition(9 * 64.f, y * 64.f);
         window.draw(stoneTile);
@@ -189,7 +191,6 @@ void CemeteryScene::render(sf::RenderWindow& window) {
         window.draw(stoneTile);
     }
 
-    // sprites only (no rectangle draw)
     if (hasGraveTexture) {
         window.draw(grave1Sprite);
         window.draw(grave2Sprite);
@@ -215,6 +216,7 @@ void CemeteryScene::handleEvent(sf::Event& event) {
     if (event.key.code == sf::Keyboard::M) {
         Levels::muted = !Levels::muted;
         GameSystem::applyMute();
+        SaveSystem::save(Levels::muted, Levels::level1Complete, Levels::level2Complete);
         return;
     }
 

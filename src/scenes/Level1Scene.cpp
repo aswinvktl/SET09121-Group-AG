@@ -35,8 +35,8 @@ Level1Scene::Level1Scene() {
     floorTile.setTexture(Assets::getTexture("stone"));
     floorTile.setTextureRect({0, 0, 32, 32});
     floorTile.setScale(2.f, 2.f);
-
-    ghostSprite.setTexture(Assets::getTexture("ghost"));
+    
+    ghostSprite.setTexture(Assets::getTexture("human"));
     ghostSprite.setTextureRect({0, 0, 32, 32});
     ghostSprite.setOrigin(16.f, 16.f);
     ghostSprite.setScale(2.f, 2.f);

@@ -6,7 +6,7 @@ std::unordered_map<std::string, sf::Texture> Assets::textures;
 void Assets::loadTexture(const std::string& name, const std::string& path) {
     sf::Texture tex;
     if (!tex.loadFromFile(path))
-        throw std::runtime_error("Failed to load texture: " + path);
+    throw std::runtime_error(std::string("failed to load texture: ") + path);
     textures[name] = std::move(tex);
 }
 
