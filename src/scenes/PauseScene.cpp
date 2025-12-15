@@ -55,6 +55,7 @@ void PauseScene::handleEvent(sf::Event& event) {
 
     if (event.key.code == sf::Keyboard::M) {
         Levels::muted = !Levels::muted;
+        GameSystem::applyMute();
         return;
     }
 
@@ -63,6 +64,7 @@ void PauseScene::handleEvent(sf::Event& event) {
         event.key.code == sf::Keyboard::Enter ||
         event.key.code == sf::Keyboard::Return) {
         playClick();
+        GameSystem::resumeMusic();
         if (Levels::pausedFrom) GameSystem::setActiveScene(Levels::pausedFrom);
         return;
     }
@@ -72,6 +74,7 @@ void PauseScene::handleEvent(sf::Event& event) {
         playClick();
         auto lvl1 = std::dynamic_pointer_cast<Level1Scene>(Levels::pausedFrom);
         if (lvl1) lvl1->reset();
+        GameSystem::resumeMusic();
         if (Levels::pausedFrom) GameSystem::setActiveScene(Levels::pausedFrom);
         return;
     }
@@ -79,6 +82,7 @@ void PauseScene::handleEvent(sf::Event& event) {
     // Main menu
     if (event.key.code == sf::Keyboard::Q) {
         playClick();
+        GameSystem::playMusic("resources/music/menu.wav", true);
         GameSystem::setActiveScene(Levels::menu);
         return;
     }

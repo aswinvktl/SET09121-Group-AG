@@ -1,23 +1,15 @@
 #include "systems/GameSystem.h"
+#include "levels.h"
 
 sf::RenderWindow GameSystem::window_;
 sf::Clock GameSystem::clock_;
 std::shared_ptr<Scene> GameSystem::current_scene_ = nullptr;
 
+sf::Music GameSystem::music_;
+std::string GameSystem::current_track_;
+
 // Fixed virtual resolution
 static const sf::Vector2f VIRTUAL_SIZE(1280.f, 720.f);
-
-void GameSystem::setActiveScene(const std::shared_ptr<Scene>& scene) {
-    current_scene_ = scene;
-}
-
-void GameSystem::quit() {
-    window_.close();
-}
-
-sf::RenderWindow& GameSystem::window() {
-    return window_;
-}
 
 static sf::View makeLetterboxView(sf::Vector2u windowSize) {
     sf::View view({0.f, 0.f, VIRTUAL_SIZE.x, VIRTUAL_SIZE.y});
@@ -41,6 +33,66 @@ static sf::View makeLetterboxView(sf::Vector2u windowSize) {
     view.setViewport({posX, posY, sizeX, sizeY});
     return view;
 }
+
+void GameSystem::setActiveScene(const std::shared_ptr<Scene>& scene) {
+    current_scene_ = scene;
+}
+
+void GameSystem::quit() {
+    window_.close();
+}
+
+sf::RenderWindow& GameSystem::window() {
+    return window_;
+}
+
+// ---------------- MUSIC (single owner) ----------------
+
+void GameSystem::applyMute() {
+    // simplest + lab-safe: just volume 0/100
+    music_.setVolume(Levels::muted ? 0.f : 100.f);
+}
+
+void GameSystem::playMusic(const std::string& path, bool loop) {
+    // If same track already playing, do nothing
+    if (current_track_ == path && music_.getStatus() == sf::Music::Playing) {
+        applyMute();
+        return;
+    }
+
+    // Stop previous, load new
+    music_.stop();
+    current_track_.clear();
+
+    if (!music_.openFromFile(path)) {
+        return; // fail silently (lab-style)
+    }
+
+    current_track_ = path;
+    music_.setLoop(loop);
+    applyMute();
+    music_.play();
+}
+
+void GameSystem::stopMusic() {
+    music_.stop();
+    current_track_.clear();
+}
+
+void GameSystem::pauseMusic() {
+    if (music_.getStatus() == sf::Music::Playing) {
+        music_.pause();
+    }
+}
+
+void GameSystem::resumeMusic() {
+    if (music_.getStatus() != sf::Music::Playing && !current_track_.empty()) {
+        applyMute();
+        music_.play();
+    }
+}
+
+// ---------------- LOOP ----------------
 
 void GameSystem::start() {
     window_.create(sf::VideoMode(1280, 720), "Ghost Redemption", sf::Style::Default);

@@ -60,12 +60,8 @@ CemeteryScene::CemeteryScene() {
         r.setSize({60.f, 92.f});
         r.setOrigin(30.f, 46.f);
         r.setPosition(pos);
-        r.setOutlineThickness(2.f);
-        r.setOutlineColor(sf::Color(0, 0, 0, 60));
-        r.setFillColor(sf::Color(80, 60, 40)); // fallback colour (only visible if textures missing)
     };
 
-    // grave positions (same as before)
     setupGrave(grave1Rect, {640.f, 500.f});
     setupGrave(grave2Rect, {640.f, 350.f});
     setupGrave(grave3Rect, {640.f, 200.f});
@@ -81,7 +77,6 @@ CemeteryScene::CemeteryScene() {
     addBlock({120.f, 80.f},  {40.f, 560.f});
     addBlock({1120.f, 80.f}, {40.f, 560.f});
 
-    // font + UI
     (void)font.loadFromFile("resources/fonts/Kenney Future.ttf");
 
     banner.setFont(font);
@@ -94,14 +89,11 @@ CemeteryScene::CemeteryScene() {
     interact.setCharacterSize(22);
     interact.setFillColor(sf::Color(255, 255, 255));
     interact.setString("Press E");
-    interact.setPosition(0.f, 0.f);
 
-    // labels under graves
     setupLevelLabel(level1Label, "LEVEL 1", {grave1Rect.getPosition().x, grave1Rect.getPosition().y + 70.f});
     setupLevelLabel(level2Label, "LEVEL 2", {grave2Rect.getPosition().x, grave2Rect.getPosition().y + 70.f});
     setupLevelLabel(level3Label, "LEVEL 3", {grave3Rect.getPosition().x, grave3Rect.getPosition().y + 70.f});
 
-    // grave textures (new)
     hasGraveTexture = Assets::hasTexture("grave");
     hasFlowerTexture = Assets::hasTexture("flowerbed");
 
@@ -120,6 +112,9 @@ CemeteryScene::CemeteryScene() {
         setupSprite(grave2Sprite, grave2Rect.getPosition());
         setupSprite(grave3Sprite, grave3Rect.getPosition());
     }
+
+    // MUSIC (global gameplay loop)
+    GameSystem::playMusic("resources/music/gameplay.wav", true);
 }
 
 void CemeteryScene::update(float dt) {
@@ -149,6 +144,15 @@ void CemeteryScene::update(float dt) {
 
     ghostSprite.setPosition(ghostPos);
 
+    // swap grave1 to flowerbed after level 1 complete
+    if (hasGraveTexture) {
+        if (hasFlowerTexture && Levels::level1Complete) {
+            grave1Sprite.setTexture(Assets::getTexture("flowerbed"), true);
+        } else {
+            grave1Sprite.setTexture(Assets::getTexture("grave"), true);
+        }
+    }
+
     // keep visuals aligned
     if (hasGraveTexture) {
         grave1Sprite.setPosition(grave1Rect.getPosition());
@@ -156,32 +160,18 @@ void CemeteryScene::update(float dt) {
         grave3Sprite.setPosition(grave3Rect.getPosition());
     }
 
-    // update label positions in case you change grave positions later
     level1Label.setPosition(grave1Rect.getPosition().x, grave1Rect.getPosition().y + 70.f);
     level2Label.setPosition(grave2Rect.getPosition().x, grave2Rect.getPosition().y + 70.f);
     level3Label.setPosition(grave3Rect.getPosition().x, grave3Rect.getPosition().y + 70.f);
-
-    // fallback colour update (only matters if textures are missing)
-    grave1Rect.setFillColor(Levels::level1Complete ? sf::Color(70, 170, 90) : sf::Color(80, 60, 40));
-    grave2Rect.setFillColor(sf::Color(80, 60, 40));
-    grave3Rect.setFillColor(sf::Color(80, 60, 40));
-
-    // swap grave1 to flowerbed after level 1 complete
-    if (hasFlowerTexture && Levels::level1Complete) {
-        grave1Sprite.setTexture(Assets::getTexture("flowerbed"), true);
-    } else if (hasGraveTexture) {
-        grave1Sprite.setTexture(Assets::getTexture("grave"), true);
-    }
 }
 
 void CemeteryScene::render(sf::RenderWindow& window) {
     // grass base
-    for (int y = 0; y < 12; ++y) {
+    for (int y = 0; y < 12; ++y)
         for (int x = 0; x < 20; ++x) {
             grassTile.setPosition(x * 64.f, y * 64.f);
             window.draw(grassTile);
         }
-    }
 
     // stone cross lanes
     for (int y = 1; y < 11; ++y) {
@@ -199,14 +189,13 @@ void CemeteryScene::render(sf::RenderWindow& window) {
         window.draw(stoneTile);
     }
 
-    // sprites
+    // sprites only (no rectangle draw)
     if (hasGraveTexture) {
         window.draw(grave1Sprite);
         window.draw(grave2Sprite);
         window.draw(grave3Sprite);
     }
 
-    // labels under graves
     window.draw(level1Label);
     window.draw(level2Label);
     window.draw(level3Label);
@@ -214,7 +203,6 @@ void CemeteryScene::render(sf::RenderWindow& window) {
     window.draw(ghostSprite);
     window.draw(banner);
 
-    // show press e only when overlapping
     if (overlaps(ghostHitbox, grave1Rect) || overlaps(ghostHitbox, grave2Rect) || overlaps(ghostHitbox, grave3Rect)) {
         interact.setPosition(ghostPos.x - 30.f, ghostPos.y - 60.f);
         window.draw(interact);
@@ -226,6 +214,7 @@ void CemeteryScene::handleEvent(sf::Event& event) {
 
     if (event.key.code == sf::Keyboard::M) {
         Levels::muted = !Levels::muted;
+        GameSystem::applyMute();
         return;
     }
 
@@ -239,7 +228,9 @@ void CemeteryScene::handleEvent(sf::Event& event) {
     }
 
     if (event.key.code == sf::Keyboard::Escape) {
+        GameSystem::pauseMusic();
         Levels::pausedFrom = Levels::cemetery;
         GameSystem::setActiveScene(Levels::pause);
+        return;
     }
 }

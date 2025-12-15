@@ -13,8 +13,6 @@ namespace {
         return {v.x * inv, v.y * inv};
     }
 
-    float dot(sf::Vector2f a, sf::Vector2f b) { return a.x * b.x + a.y * b.y; }
-
     sf::FloatRect inset(sf::FloatRect r, float amount) {
         r.left += amount;
         r.top += amount;
@@ -30,13 +28,10 @@ namespace {
 }
 
 void Level1Scene::playClick() {
-    if (hasClick && !Levels::muted) {
-        clickSound.play();
-    }
+    if (hasClick && !Levels::muted) clickSound.play();
 }
 
 Level1Scene::Level1Scene() {
-    // Textures
     floorTile.setTexture(Assets::getTexture("stone"));
     floorTile.setTextureRect({0, 0, 32, 32});
     floorTile.setScale(2.f, 2.f);
@@ -48,7 +43,6 @@ Level1Scene::Level1Scene() {
 
     hasDogTexture = Assets::hasTexture("dog");
 
-    // Font/UI
     (void)font.loadFromFile("resources/fonts/Kenney Future.ttf");
     hud.setFont(font);
     hud.setCharacterSize(20);
@@ -56,14 +50,17 @@ Level1Scene::Level1Scene() {
     hud.setString("REACH DOOR | AVOID POOLS + DOGS   [R] Restart  [M] Mute  [ESC] Pause");
     hud.setPosition(20.f, 20.f);
 
-    // Audio
+    // MUSIC (global gameplay loop)
+    GameSystem::playMusic("resources/music/gameplay.wav", true);
+
+    // click
     hasClick = clickBuffer.loadFromFile("resources/sfx/ui/click.ogg");
     if (hasClick) {
         clickSound.setBuffer(clickBuffer);
         clickSound.setVolume(60.f);
     }
 
-    // Player
+    // player
     player.setSize({24.f, 24.f});
     player.setFillColor(sf::Color(255, 255, 255, 0));
     player.setOrigin(12.f, 12.f);
@@ -71,13 +68,12 @@ Level1Scene::Level1Scene() {
     player.setPosition(playerStart);
     ghostSprite.setPosition(playerStart);
 
-    // Pool border texture
+    // border texture for pools
     wallTex = &Assets::getTexture("wall");
 
-    // Door goal
+    // door
     hasDoorClosed = Assets::hasTexture("closed_door");
     hasDoorOpen = Assets::hasTexture("open_door");
-
     if (hasDoorClosed) {
         doorSprite.setTexture(Assets::getTexture("closed_door"));
         const auto b = doorSprite.getLocalBounds();
@@ -86,16 +82,14 @@ Level1Scene::Level1Scene() {
         doorSprite.setPosition({1180.f, 90.f});
     }
 
-    // Pools
+    // pools
     addPool({200.f, 160.f}, {180.f, 120.f}, "POOL 1");
     addPool({520.f, 360.f}, {240.f, 140.f}, "POOL 2");
+    addPool({1040.f, 170.f}, {200.f, 120.f}, "POOL 3"); // below door
 
-    // Pool 3 moved below the door
-    addPool({1040.f, 170.f}, {200.f, 120.f}, "POOL 3");
-
-    // Dogs: go almost full screen (leave 1 tile margin each side)
-    addDog({64.f, 300.f}, {1280.f - 64.f, 300.f}, 160.f);            // horizontal full length
-    addDog({980.f, 64.f}, {980.f, 720.f - 64.f}, 140.f);             // vertical full height
+    // dogs (1 tile margin each side)
+    addDog({64.f, 300.f}, {1280.f - 64.f, 300.f}, 160.f);
+    addDog({980.f, 64.f}, {980.f, 720.f - 64.f}, 140.f);
 }
 
 void Level1Scene::addPool(const sf::Vector2f& pos, const sf::Vector2f& size, const std::string& name) {
@@ -156,7 +150,6 @@ void Level1Scene::drawPoolBorder(sf::RenderWindow& window, const sf::RectangleSh
     t.setScale(2.f, 2.f);
 
     const sf::FloatRect b = water.getGlobalBounds();
-
     const float left = b.left - TILE;
     const float right = b.left + b.width;
     const float top = b.top - TILE;
@@ -211,16 +204,21 @@ void Level1Scene::handleEvent(sf::Event& event) {
 
     if (event.key.code == sf::Keyboard::M) {
         Levels::muted = !Levels::muted;
+        GameSystem::applyMute();
         return;
     }
+
     if (event.key.code == sf::Keyboard::R) {
         playClick();
         resetLevel();
         return;
     }
+
     if (event.key.code == sf::Keyboard::Escape) {
+        GameSystem::pauseMusic();
         Levels::pausedFrom = Levels::level1;
         GameSystem::setActiveScene(Levels::pause);
+        return;
     }
 }
 
@@ -256,56 +254,38 @@ void Level1Scene::update(float dt) {
             d.body.move(d.dir * d.speed * dt);
         }
 
-        const sf::Vector2f pos = d.body.getPosition();
-        const sf::Vector2f target = d.goingToB ? d.b : d.a;
-        const sf::Vector2f start = d.goingToB ? d.a : d.b;
+        const float toB = dist2(d.body.getPosition(), d.b);
+        const float toA = dist2(d.body.getPosition(), d.a);
 
-        const sf::Vector2f seg = target - start;
-        const sf::Vector2f toTarget = target - pos;
-        const float passed = dot(toTarget, seg);
-
-        if (dist2(pos, target) < (8.f * 8.f) || passed < 0.f) {
-            d.body.setPosition(target);
-            d.goingToB = !d.goingToB;
-            const sf::Vector2f nextTarget = d.goingToB ? d.b : d.a;
-            d.dir = normalize(nextTarget - target);
+        if (d.goingToB && toB < 25.f) {
+            d.goingToB = false;
             d.waitTimer = 0.35f;
+            d.dir = normalize(d.a - d.b);
+        } else if (!d.goingToB && toA < 25.f) {
+            d.goingToB = true;
+            d.waitTimer = 0.35f;
+            d.dir = normalize(d.b - d.a);
         }
 
+        // pool collision: if dog overlaps pool, revert + flip direction
         bool hitPool = false;
-        for (const auto& p : pools) {
-            const sf::FloatRect poolHit = inset(p.water.getGlobalBounds(), 2.f);
-            if (d.body.getGlobalBounds().intersects(poolHit)) {
+        for (auto& p : pools) {
+            if (d.body.getGlobalBounds().intersects(p.water.getGlobalBounds())) {
                 hitPool = true;
                 break;
             }
         }
         if (hitPool) {
             d.body.setPosition(prev);
-            d.dir = {-d.dir.x, -d.dir.y};
+            d.dir = -d.dir;
             d.goingToB = !d.goingToB;
-            d.waitTimer = 0.25f;
         }
 
         if (hasDogTexture && i < dogSprites.size()) {
             dogSprites[i].setPosition(d.body.getPosition());
-            const float sx = std::abs(dogSprites[i].getScale().x);
-            dogSprites[i].setScale((d.dir.x < 0.f) ? -sx : sx, dogSprites[i].getScale().y);
         }
-    }
 
-    // Player vs pools
-    for (const auto& p : pools) {
-        const sf::FloatRect poolHit = inset(p.water.getGlobalBounds(), 2.f);
-        if (playerHit.intersects(poolHit)) {
-            playClick();
-            resetLevel();
-            return;
-        }
-    }
-
-    // Player vs dogs
-    for (const auto& d : dogs) {
+        // player hit by dog
         if (playerHit.intersects(d.body.getGlobalBounds())) {
             playClick();
             resetLevel();
@@ -313,48 +293,56 @@ void Level1Scene::update(float dt) {
         }
     }
 
-    // Player vs door (open it, then exit after a short delay)
-    if (!doorOpened && hasDoorClosed) {
-        const sf::FloatRect doorHit = doorSprite.getGlobalBounds();
-        if (playerHit.intersects(doorHit)) {
-            doorOpened = true;
-            doorOpenTimer = 0.6f;
+    // pool: reset player
+    for (auto& p : pools) {
+        if (playerHit.intersects(p.water.getGlobalBounds())) {
             playClick();
+            resetLevel();
+            return;
+        }
+    }
 
+    // door open / win trigger
+    if (hasDoorClosed && playerHit.intersects(doorSprite.getGlobalBounds())) {
+        if (!doorOpened) {
+            doorOpened = true;
+            doorOpenTimer = 0.75f;
             if (hasDoorOpen) {
                 doorSprite.setTexture(Assets::getTexture("open_door"), true);
             }
+            playClick();
         }
     }
 }
 
 void Level1Scene::render(sf::RenderWindow& window) {
-    for (int y = 0; y < 12; ++y) {
+    // floor tiles
+    for (int y = 0; y < 12; ++y)
         for (int x = 0; x < 20; ++x) {
             floorTile.setPosition(x * 64.f, y * 64.f);
             window.draw(floorTile);
         }
-    }
 
-    // pools with borders + labels
-    for (const auto& p : pools) {
+    // pools + borders + labels
+    for (auto& p : pools) {
         drawPoolBorder(window, p.water);
         window.draw(p.water);
         window.draw(p.label);
     }
 
-    // door
-    if (hasDoorClosed) {
-        window.draw(doorSprite);
-    }
-
     // dogs
     if (hasDogTexture) {
-        for (const auto& s : dogSprites) window.draw(s);
+        for (auto& s : dogSprites) window.draw(s);
     } else {
-        for (const auto& d : dogs) window.draw(d.body);
+        for (auto& d : dogs) window.draw(d.body);
     }
 
+    // door
+    if (hasDoorClosed) window.draw(doorSprite);
+
+    // player
     window.draw(ghostSprite);
+
+    // UI
     window.draw(hud);
 }

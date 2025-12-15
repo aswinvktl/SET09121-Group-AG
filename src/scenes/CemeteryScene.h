@@ -23,7 +23,7 @@ private:
     sf::Vector2f ghostPos;
     float ghostSpeed = 280.0f;
 
-    // graves (rects are still the interaction/hit boxes)
+    // graves (rects are interaction/hit boxes only; not rendered)
     sf::RectangleShape grave1Rect;
     sf::RectangleShape grave2Rect;
     sf::RectangleShape grave3Rect;
