@@ -1,4 +1,5 @@
 #pragma once
+
 #include "scenes/Scene.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -17,12 +18,13 @@ private:
         sf::Vector2f a;
         sf::Vector2f b;
         sf::Vector2f dir;
-        float speed = 220.f;
+        float speed = 300.f;
     };
+
+    static sf::Vector2f normalize(sf::Vector2f v);
 
     void resetLevel();
     void win();
-    static sf::Vector2f normalize(sf::Vector2f v);
 
     sf::Sprite floorTile;
 
@@ -34,8 +36,6 @@ private:
     std::vector<Guard> guards;
     std::vector<sf::Sprite> guardSprites;
     bool hasGuardTexture = false;
-
-    sf::RectangleShape goal;
 
     sf::RectangleShape key;
     sf::Sprite keySprite;

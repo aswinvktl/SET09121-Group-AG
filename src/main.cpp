@@ -7,6 +7,7 @@
 #include "scenes/CemeteryScene.h"
 #include "scenes/Level1Scene.h"
 #include "scenes/Level2Scene.h"
+#include "scenes/Level3Scene.h"
 #include "scenes/EndingScene.h"
 
 #include "utils/SaveSystem.h"
@@ -41,7 +42,7 @@ int main() {
     // ------------------------
     // Load saved game state
     // ------------------------
-    SaveSystem::load(Levels::muted, Levels::level1Complete, Levels::level2Complete);
+    SaveSystem::load(Levels::muted, Levels::level1Complete, Levels::level2Complete, Levels::level3Complete);
 
     // ------------------------
     // Create scenes (persistent)

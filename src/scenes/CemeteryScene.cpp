@@ -134,7 +134,7 @@ CemeteryScene::CemeteryScene() {
 
 void CemeteryScene::update(float dt) {
     // if all levels done, go to ending
-    if (Levels::level1Complete && Levels::level2Complete) {
+    if (Levels::level1Complete && Levels::level2Complete && Levels::level3Complete) {
         GameSystem::setActiveScene(Levels::ending);
         return;
     }
@@ -173,6 +173,18 @@ void CemeteryScene::update(float dt) {
             grave1Sprite.setTexture(Assets::getTexture("flowerbed"), true);
         } else {
             grave1Sprite.setTexture(Assets::getTexture("grave"), true);
+        }
+
+        if (hasFlowerTexture && Levels::level2Complete) {
+            grave2Sprite.setTexture(Assets::getTexture("flowerbed"), true);
+        } else {
+            grave2Sprite.setTexture(Assets::getTexture("grave"), true);
+        }
+
+        if (hasFlowerTexture && Levels::level3Complete) {
+            grave3Sprite.setTexture(Assets::getTexture("flowerbed"), true);
+        } else {
+            grave3Sprite.setTexture(Assets::getTexture("grave"), true);
         }
     }
 
@@ -243,7 +255,10 @@ void CemeteryScene::handleEvent(sf::Event& event) {
     if (event.key.code == sf::Keyboard::M) {
         Levels::muted = !Levels::muted;
         GameSystem::applyMute();
-        SaveSystem::save(Levels::muted, Levels::level1Complete, Levels::level2Complete);
+        SaveSystem::save(Levels::muted,
+                         Levels::level1Complete,
+                         Levels::level2Complete,
+                         Levels::level3Complete);
         return;
     }
 
@@ -253,6 +268,8 @@ void CemeteryScene::handleEvent(sf::Event& event) {
             GameSystem::setActiveScene(Levels::level1);
         } else if (overlaps(ghostHitbox, grave2Rect)) {
             GameSystem::setActiveScene(Levels::level2);
+        } else if (overlaps(ghostHitbox, grave3Rect)) {
+            GameSystem::setActiveScene(Levels::level3);
         }
         return;
     }
