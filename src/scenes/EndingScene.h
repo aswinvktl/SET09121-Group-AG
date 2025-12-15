@@ -1,4 +1,5 @@
 #pragma once
+
 #include "scenes/Scene.h"
 #include <SFML/Graphics.hpp>
 
@@ -12,10 +13,5 @@ public:
 
 private:
     sf::Font font;
-    sf::Text title;
-    sf::Text body;
-    sf::Text hint;
-    sf::RectangleShape fade;
-
-    static void center(sf::Text& t, sf::Vector2f pos);
+    sf::Text text;
 };
