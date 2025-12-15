@@ -166,26 +166,41 @@ void Level3Scene::update(float dt) {
 }
 
 void Level3Scene::render(sf::RenderWindow& window) {
-    sf::RectangleShape bg({1280.f, 720.f});
+    // Ensure level coordinates are visible regardless of window size
+    window.setView(sf::View(sf::FloatRect(0.f, 0.f, 1280.f, 768.f)));
+
+    // Background
+    sf::RectangleShape bg({1280.f, 768.f});
     bg.setFillColor(sf::Color(10, 10, 15));
     window.draw(bg);
 
-    for (int y = 0; y < 12; ++y)
+    // Debug square (proves rendering works)
+    sf::RectangleShape test({200.f, 200.f});
+    test.setPosition(20.f, 20.f);
+    test.setFillColor(sf::Color::Magenta);
+    window.draw(test);
+
+    // Floor
+    for (int y = 0; y < 12; ++y) {
         for (int x = 0; x < 20; ++x) {
             floorTile.setPosition(x * 64.f, y * 64.f);
             window.draw(floorTile);
         }
+    }
 
+    // Guards
     if (hasGuardTexture) {
         for (const auto& s : guardSprites) window.draw(s);
     } else {
         for (const auto& g : guards) window.draw(g.body);
     }
 
+    // Key / objectives
     if (!hasKey && Assets::hasTexture("key")) window.draw(keySprite);
     if (!hasFood) window.draw(warehouse);
     window.draw(exitZone);
 
+    // Player
     window.draw(ghostSprite);
 }
 
