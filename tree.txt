@@ -1,0 +1,1199 @@
+.
+├── build
+├── CMakeLists.txt
+├── compile_commands.json
+├── lib
+│   ├── box2d
+│   │   ├── benchmark
+│   │   │   ├── amd7950x_avx2
+│   │   │   │   ├── joint_grid.csv
+│   │   │   │   ├── large_pyramid.csv
+│   │   │   │   ├── many_pyramids.csv
+│   │   │   │   ├── rain.csv
+│   │   │   │   ├── smash.csv
+│   │   │   │   ├── spinner.csv
+│   │   │   │   └── tumbler.csv
+│   │   │   ├── amd7950x_float
+│   │   │   │   ├── joint_grid.csv
+│   │   │   │   ├── large_pyramid.csv
+│   │   │   │   ├── many_pyramids.csv
+│   │   │   │   ├── rain.csv
+│   │   │   │   ├── smash.csv
+│   │   │   │   ├── spinner.csv
+│   │   │   │   └── tumbler.csv
+│   │   │   ├── amd7950x_sse2
+│   │   │   │   ├── joint_grid.csv
+│   │   │   │   ├── large_pyramid.csv
+│   │   │   │   ├── many_pyramids.csv
+│   │   │   │   ├── rain.csv
+│   │   │   │   ├── smash.csv
+│   │   │   │   ├── spinner.csv
+│   │   │   │   └── tumbler.csv
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── m2air_float
+│   │   │   │   ├── joint_grid.csv
+│   │   │   │   ├── large_pyramid.csv
+│   │   │   │   ├── many_pyramids.csv
+│   │   │   │   ├── rain.csv
+│   │   │   │   ├── smash.csv
+│   │   │   │   ├── spinner.csv
+│   │   │   │   └── tumbler.csv
+│   │   │   ├── m2air_neon
+│   │   │   │   ├── joint_grid.csv
+│   │   │   │   ├── large_pyramid.csv
+│   │   │   │   ├── many_pyramids.csv
+│   │   │   │   ├── rain.csv
+│   │   │   │   ├── smash.csv
+│   │   │   │   ├── spinner.csv
+│   │   │   │   └── tumbler.csv
+│   │   │   ├── main.c
+│   │   │   └── n100_sse2
+│   │   │       ├── joint_grid.csv
+│   │   │       ├── large_pyramid.csv
+│   │   │       ├── many_pyramids.csv
+│   │   │       ├── rain.csv
+│   │   │       ├── smash.csv
+│   │   │       ├── spinner.csv
+│   │   │       └── tumbler.csv
+│   │   ├── build_emscripten.sh
+│   │   ├── build.sh
+│   │   ├── CMakeLists.txt
+│   │   ├── create_sln.bat
+│   │   ├── deploy_docs.sh
+│   │   ├── docs
+│   │   │   ├── character.md
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── collision.md
+│   │   │   ├── extra.css
+│   │   │   ├── FAQ.md
+│   │   │   ├── foundation.md
+│   │   │   ├── hello.md
+│   │   │   ├── images
+│   │   │   │   ├── capsule.svg
+│   │   │   │   ├── captured_toi.svg
+│   │   │   │   ├── center_of_mass.svg
+│   │   │   │   ├── chain_loop_inwards.svg
+│   │   │   │   ├── chain_loop_outwards.svg
+│   │   │   │   ├── chain_shape.svg
+│   │   │   │   ├── circle.svg
+│   │   │   │   ├── convex_concave.svg
+│   │   │   │   ├── distance_joint.svg
+│   │   │   │   ├── distance.svg
+│   │   │   │   ├── ghost_collision.svg
+│   │   │   │   ├── ghost_vertices.svg
+│   │   │   │   ├── logo.svg
+│   │   │   │   ├── manifolds.svg
+│   │   │   │   ├── missed_toi.svg
+│   │   │   │   ├── mover.png
+│   │   │   │   ├── overlap_test.svg
+│   │   │   │   ├── prismatic_joint.svg
+│   │   │   │   ├── raycast.svg
+│   │   │   │   ├── revolute_joint.svg
+│   │   │   │   ├── samples.png
+│   │   │   │   ├── self_intersect.svg
+│   │   │   │   ├── simulation_loop.svg
+│   │   │   │   ├── skin_collision.svg
+│   │   │   │   ├── tunneling1.svg
+│   │   │   │   ├── tunneling2.svg
+│   │   │   │   ├── wheel_joint.svg
+│   │   │   │   └── winding.svg
+│   │   │   ├── layout.xml
+│   │   │   ├── loose_ends.md
+│   │   │   ├── migration.md
+│   │   │   ├── overview.md
+│   │   │   ├── reading.md
+│   │   │   ├── release_notes_v310.md
+│   │   │   ├── samples.md
+│   │   │   └── simulation.md
+│   │   ├── extern
+│   │   │   ├── glad
+│   │   │   │   ├── include
+│   │   │   │   │   ├── glad
+│   │   │   │   │   │   └── glad.h
+│   │   │   │   │   └── KHR
+│   │   │   │   │       └── khrplatform.h
+│   │   │   │   └── src
+│   │   │   │       └── glad.c
+│   │   │   └── jsmn
+│   │   │       └── jsmn.h
+│   │   ├── include
+│   │   │   └── box2d
+│   │   │       ├── base.h
+│   │   │       ├── box2d.h
+│   │   │       ├── collision.h
+│   │   │       ├── id.h
+│   │   │       ├── math_functions.h
+│   │   │       └── types.h
+│   │   ├── LICENSE
+│   │   ├── README.md
+│   │   ├── samples
+│   │   │   ├── car.cpp
+│   │   │   ├── car.h
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── data
+│   │   │   │   ├── background.fs
+│   │   │   │   ├── background.vs
+│   │   │   │   ├── circle.fs
+│   │   │   │   ├── circle.vs
+│   │   │   │   ├── droid_sans.ttf
+│   │   │   │   ├── map01.svg
+│   │   │   │   ├── map02.svg
+│   │   │   │   ├── map03.svg
+│   │   │   │   ├── ramp.svg
+│   │   │   │   ├── solid_capsule.fs
+│   │   │   │   ├── solid_capsule.vs
+│   │   │   │   ├── solid_circle.fs
+│   │   │   │   ├── solid_circle.vs
+│   │   │   │   ├── solid_polygon.fs
+│   │   │   │   └── solid_polygon.vs
+│   │   │   ├── donut.cpp
+│   │   │   ├── donut.h
+│   │   │   ├── doohickey.cpp
+│   │   │   ├── doohickey.h
+│   │   │   ├── draw.cpp
+│   │   │   ├── draw.h
+│   │   │   ├── main.cpp
+│   │   │   ├── sample_benchmark.cpp
+│   │   │   ├── sample_bodies.cpp
+│   │   │   ├── sample_character.cpp
+│   │   │   ├── sample_collision.cpp
+│   │   │   ├── sample_continuous.cpp
+│   │   │   ├── sample.cpp
+│   │   │   ├── sample_determinism.cpp
+│   │   │   ├── sample_events.cpp
+│   │   │   ├── sample_geometry.cpp
+│   │   │   ├── sample.h
+│   │   │   ├── sample_joints.cpp
+│   │   │   ├── sample_robustness.cpp
+│   │   │   ├── sample_shapes.cpp
+│   │   │   ├── sample_stacking.cpp
+│   │   │   ├── sample_world.cpp
+│   │   │   ├── shader.cpp
+│   │   │   └── shader.h
+│   │   ├── shared
+│   │   │   ├── benchmarks.c
+│   │   │   ├── benchmarks.h
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── determinism.c
+│   │   │   ├── determinism.h
+│   │   │   ├── human.c
+│   │   │   ├── human.h
+│   │   │   ├── random.c
+│   │   │   └── random.h
+│   │   ├── src
+│   │   │   ├── aabb.c
+│   │   │   ├── aabb.h
+│   │   │   ├── arena_allocator.c
+│   │   │   ├── arena_allocator.h
+│   │   │   ├── array.c
+│   │   │   ├── array.h
+│   │   │   ├── atomic.h
+│   │   │   ├── bitset.c
+│   │   │   ├── bitset.h
+│   │   │   ├── body.c
+│   │   │   ├── body.h
+│   │   │   ├── box2d.natvis
+│   │   │   ├── broad_phase.c
+│   │   │   ├── broad_phase.h
+│   │   │   ├── CMakeLists.txt
+│   │   │   ├── constants.h
+│   │   │   ├── constraint_graph.c
+│   │   │   ├── constraint_graph.h
+│   │   │   ├── contact.c
+│   │   │   ├── contact.h
+│   │   │   ├── contact_solver.c
+│   │   │   ├── contact_solver.h
+│   │   │   ├── core.c
+│   │   │   ├── core.h
+│   │   │   ├── ctz.h
+│   │   │   ├── distance.c
+│   │   │   ├── distance_joint.c
+│   │   │   ├── dynamic_tree.c
+│   │   │   ├── geometry.c
+│   │   │   ├── hull.c
+│   │   │   ├── id_pool.c
+│   │   │   ├── id_pool.h
+│   │   │   ├── island.c
+│   │   │   ├── island.h
+│   │   │   ├── joint.c
+│   │   │   ├── joint.h
+│   │   │   ├── manifold.c
+│   │   │   ├── math_functions.c
+│   │   │   ├── motor_joint.c
+│   │   │   ├── mouse_joint.c
+│   │   │   ├── mover.c
+│   │   │   ├── prismatic_joint.c
+│   │   │   ├── revolute_joint.c
+│   │   │   ├── sensor.c
+│   │   │   ├── sensor.h
+│   │   │   ├── shape.c
+│   │   │   ├── shape.h
+│   │   │   ├── solver.c
+│   │   │   ├── solver.h
+│   │   │   ├── solver_set.c
+│   │   │   ├── solver_set.h
+│   │   │   ├── table.c
+│   │   │   ├── table.h
+│   │   │   ├── timer.c
+│   │   │   ├── types.c
+│   │   │   ├── weld_joint.c
+│   │   │   ├── wheel_joint.c
+│   │   │   ├── world.c
+│   │   │   └── world.h
+│   │   └── test
+│   │       ├── CMakeLists.txt
+│   │       ├── main.c
+│   │       ├── test_bitset.c
+│   │       ├── test_collision.c
+│   │       ├── test_determinism.c
+│   │       ├── test_distance.c
+│   │       ├── test_id.c
+│   │       ├── test_macros.h
+│   │       ├── test_math.c
+│   │       ├── test_shape.c
+│   │       ├── test_table.c
+│   │       └── test_world.c
+│   └── SFML
+│       ├── changelog.md
+│       ├── cmake
+│       │   ├── Config.cmake
+│       │   ├── Macros.cmake
+│       │   ├── Modules
+│       │   │   ├── FindEGL.cmake
+│       │   │   ├── FindFLAC.cmake
+│       │   │   ├── FindFreetype.cmake
+│       │   │   ├── FindGLES.cmake
+│       │   │   ├── FindUDev.cmake
+│       │   │   └── FindVorbis.cmake
+│       │   ├── SFMLConfig.cmake.in
+│       │   ├── SFMLConfigDependencies.cmake.in
+│       │   └── toolchains
+│       │       ├── android.toolchain.cmake
+│       │       └── iOS.toolchain.cmake
+│       ├── CMakeLists.txt
+│       ├── CONTRIBUTING.md
+│       ├── doc
+│       │   ├── CMakeLists.txt
+│       │   ├── doxyfile.in
+│       │   ├── doxygen.css
+│       │   ├── footer.html
+│       │   ├── header.html.in
+│       │   └── mainpage.hpp
+│       ├── examples
+│       │   ├── android
+│       │   │   ├── app
+│       │   │   │   ├── app.iml
+│       │   │   │   ├── build.gradle
+│       │   │   │   ├── proguard-rules.pro
+│       │   │   │   └── src
+│       │   │   │       └── main
+│       │   │   │           ├── AndroidManifest.xml
+│       │   │   │           ├── assets
+│       │   │   │           │   ├── canary.wav
+│       │   │   │           │   ├── image.png
+│       │   │   │           │   ├── orchestral.ogg
+│       │   │   │           │   └── sansation.ttf
+│       │   │   │           ├── jni
+│       │   │   │           │   ├── Android.mk
+│       │   │   │           │   ├── Application.mk
+│       │   │   │           │   └── main.cpp
+│       │   │   │           └── res
+│       │   │   │               ├── drawable-hdpi
+│       │   │   │               │   └── sfml_logo.png
+│       │   │   │               ├── drawable-ldpi
+│       │   │   │               │   └── sfml_logo.png
+│       │   │   │               ├── drawable-mdpi
+│       │   │   │               │   └── sfml_logo.png
+│       │   │   │               ├── drawable-xhdpi
+│       │   │   │               │   └── sfml_logo.png
+│       │   │   │               ├── drawable-xxhdpi
+│       │   │   │               │   └── sfml_logo.png
+│       │   │   │               └── values
+│       │   │   │                   └── strings.xml
+│       │   │   ├── build.gradle
+│       │   │   ├── gradle.properties
+│       │   │   └── settings.gradle
+│       │   ├── CMakeLists.txt
+│       │   ├── cocoa
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── CocoaAppDelegate.h
+│       │   │   ├── CocoaAppDelegate.mm
+│       │   │   ├── main.m
+│       │   │   ├── MainMenu.xib
+│       │   │   ├── NSString+stdstring.h
+│       │   │   ├── NSString+stdstring.mm
+│       │   │   ├── readme.txt
+│       │   │   └── resources
+│       │   │       ├── blue.png
+│       │   │       ├── Cocoa-Info.plist
+│       │   │       ├── Credits.rtf
+│       │   │       ├── green.png
+│       │   │       ├── icon.icns
+│       │   │       ├── logo.png
+│       │   │       ├── red.png
+│       │   │       └── sansation.ttf
+│       │   ├── ftp
+│       │   │   ├── CMakeLists.txt
+│       │   │   └── Ftp.cpp
+│       │   ├── iOS
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── main.cpp
+│       │   │   └── resources
+│       │   │       ├── canary.wav
+│       │   │       ├── image.png
+│       │   │       ├── orchestral.ogg
+│       │   │       └── sansation.ttf
+│       │   ├── island
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Island.cpp
+│       │   │   ├── resources
+│       │   │   │   ├── sansation.ttf
+│       │   │   │   ├── terrain.frag
+│       │   │   │   └── terrain.vert
+│       │   │   └── stb_perlin.h
+│       │   ├── joystick
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Joystick.cpp
+│       │   │   └── resources
+│       │   │       └── sansation.ttf
+│       │   ├── opengl
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── OpenGL.cpp
+│       │   │   └── resources
+│       │   │       ├── background.jpg
+│       │   │       ├── sansation.ttf
+│       │   │       └── texture.jpg
+│       │   ├── pong
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Pong.cpp
+│       │   │   └── resources
+│       │   │       ├── ball.wav
+│       │   │       └── sansation.ttf
+│       │   ├── shader
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Effect.hpp
+│       │   │   ├── resources
+│       │   │   │   ├── background.jpg
+│       │   │   │   ├── billboard.frag
+│       │   │   │   ├── billboard.geom
+│       │   │   │   ├── billboard.vert
+│       │   │   │   ├── blink.frag
+│       │   │   │   ├── blur.frag
+│       │   │   │   ├── devices.png
+│       │   │   │   ├── edge.frag
+│       │   │   │   ├── logo.png
+│       │   │   │   ├── pixelate.frag
+│       │   │   │   ├── sansation.ttf
+│       │   │   │   ├── sfml.png
+│       │   │   │   ├── storm.vert
+│       │   │   │   ├── text-background.png
+│       │   │   │   └── wave.vert
+│       │   │   └── Shader.cpp
+│       │   ├── sockets
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Sockets.cpp
+│       │   │   ├── TCP.cpp
+│       │   │   └── UDP.cpp
+│       │   ├── sound
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── resources
+│       │   │   │   ├── canary.wav
+│       │   │   │   ├── ding.flac
+│       │   │   │   └── orchestral.ogg
+│       │   │   └── Sound.cpp
+│       │   ├── sound_capture
+│       │   │   ├── CMakeLists.txt
+│       │   │   └── SoundCapture.cpp
+│       │   ├── voip
+│       │   │   ├── Client.cpp
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── Server.cpp
+│       │   │   └── VoIP.cpp
+│       │   ├── win32
+│       │   │   ├── CMakeLists.txt
+│       │   │   ├── resources
+│       │   │   │   ├── image1.jpg
+│       │   │   │   └── image2.jpg
+│       │   │   └── Win32.cpp
+│       │   ├── window
+│       │   │   ├── CMakeLists.txt
+│       │   │   └── Window.cpp
+│       │   └── X11
+│       │       ├── CMakeLists.txt
+│       │       └── X11.cpp
+│       ├── extlibs
+│       │   ├── Android.mk
+│       │   ├── bin
+│       │   │   ├── x64
+│       │   │   │   └── openal32.dll
+│       │   │   └── x86
+│       │   │       └── openal32.dll
+│       │   ├── headers
+│       │   │   ├── AL
+│       │   │   │   ├── alc.h
+│       │   │   │   ├── alext.h
+│       │   │   │   ├── al.h
+│       │   │   │   ├── efx-creative.h
+│       │   │   │   ├── efx.h
+│       │   │   │   └── efx-presets.h
+│       │   │   ├── FLAC
+│       │   │   │   ├── all.h
+│       │   │   │   ├── assert.h
+│       │   │   │   ├── callback.h
+│       │   │   │   ├── export.h
+│       │   │   │   ├── format.h
+│       │   │   │   ├── metadata.h
+│       │   │   │   ├── ordinals.h
+│       │   │   │   ├── stream_decoder.h
+│       │   │   │   └── stream_encoder.h
+│       │   │   ├── freetype2
+│       │   │   │   ├── config
+│       │   │   │   │   ├── ftconfig.h
+│       │   │   │   │   ├── ftheader.h
+│       │   │   │   │   ├── ftmodule.h
+│       │   │   │   │   ├── ftoption.h
+│       │   │   │   │   └── ftstdlib.h
+│       │   │   │   ├── freetype.h
+│       │   │   │   ├── ft2build.h
+│       │   │   │   ├── ftadvanc.h
+│       │   │   │   ├── ftautoh.h
+│       │   │   │   ├── ftbbox.h
+│       │   │   │   ├── ftbdf.h
+│       │   │   │   ├── ftbitmap.h
+│       │   │   │   ├── ftbzip2.h
+│       │   │   │   ├── ftcache.h
+│       │   │   │   ├── ftcffdrv.h
+│       │   │   │   ├── ftchapters.h
+│       │   │   │   ├── ftcid.h
+│       │   │   │   ├── fterrdef.h
+│       │   │   │   ├── fterrors.h
+│       │   │   │   ├── ftgasp.h
+│       │   │   │   ├── ftglyph.h
+│       │   │   │   ├── ftgxval.h
+│       │   │   │   ├── ftgzip.h
+│       │   │   │   ├── ftimage.h
+│       │   │   │   ├── ftincrem.h
+│       │   │   │   ├── ftlcdfil.h
+│       │   │   │   ├── ftlist.h
+│       │   │   │   ├── ftlzw.h
+│       │   │   │   ├── ftmac.h
+│       │   │   │   ├── ftmm.h
+│       │   │   │   ├── ftmodapi.h
+│       │   │   │   ├── ftmoderr.h
+│       │   │   │   ├── ftotval.h
+│       │   │   │   ├── ftoutln.h
+│       │   │   │   ├── ftpfr.h
+│       │   │   │   ├── ftrender.h
+│       │   │   │   ├── ftsizes.h
+│       │   │   │   ├── ftsnames.h
+│       │   │   │   ├── ftstroke.h
+│       │   │   │   ├── ftsynth.h
+│       │   │   │   ├── ftsystem.h
+│       │   │   │   ├── fttrigon.h
+│       │   │   │   ├── ftttdrv.h
+│       │   │   │   ├── fttypes.h
+│       │   │   │   ├── ftwinfnt.h
+│       │   │   │   ├── ftxf86.h
+│       │   │   │   ├── t1tables.h
+│       │   │   │   ├── ttnameid.h
+│       │   │   │   ├── tttables.h
+│       │   │   │   ├── tttags.h
+│       │   │   │   └── ttunpat.h
+│       │   │   ├── mingw
+│       │   │   │   ├── dinput.h
+│       │   │   │   └── _mingw_dxhelper.h
+│       │   │   ├── ogg
+│       │   │   │   ├── config_types.h
+│       │   │   │   ├── ogg.h
+│       │   │   │   └── os_types.h
+│       │   │   ├── stb_image
+│       │   │   │   ├── stb_image.h
+│       │   │   │   └── stb_image_write.h
+│       │   │   └── vorbis
+│       │   │       ├── codec.h
+│       │   │       ├── vorbisenc.h
+│       │   │       └── vorbisfile.h
+│       │   ├── libs-android
+│       │   │   ├── armeabi
+│       │   │   │   ├── libFLAC++.a
+│       │   │   │   ├── libFLAC.a
+│       │   │   │   ├── libfreetype.a
+│       │   │   │   ├── libogg.a
+│       │   │   │   ├── libopenal.so
+│       │   │   │   ├── libvorbis.a
+│       │   │   │   ├── libvorbisenc.a
+│       │   │   │   └── libvorbisfile.a
+│       │   │   ├── armeabi-v7a
+│       │   │   │   ├── libFLAC++.a
+│       │   │   │   ├── libFLAC.a
+│       │   │   │   ├── libfreetype.a
+│       │   │   │   ├── libogg.a
+│       │   │   │   ├── libopenal.so
+│       │   │   │   ├── libvorbis.a
+│       │   │   │   ├── libvorbisenc.a
+│       │   │   │   └── libvorbisfile.a
+│       │   │   ├── mips
+│       │   │   │   ├── libFLAC++.a
+│       │   │   │   ├── libFLAC.a
+│       │   │   │   ├── libfreetype.a
+│       │   │   │   ├── libogg.a
+│       │   │   │   ├── libopenal.so
+│       │   │   │   ├── libvorbis.a
+│       │   │   │   ├── libvorbisenc.a
+│       │   │   │   └── libvorbisfile.a
+│       │   │   └── x86
+│       │   │       ├── libFLAC++.a
+│       │   │       ├── libFLAC.a
+│       │   │       ├── libfreetype.a
+│       │   │       ├── libogg.a
+│       │   │       ├── libopenal.so
+│       │   │       ├── libvorbis.a
+│       │   │       ├── libvorbisenc.a
+│       │   │       └── libvorbisfile.a
+│       │   ├── libs-ios
+│       │   │   ├── libflac.a
+│       │   │   ├── libfreetype.a
+│       │   │   ├── libogg.a
+│       │   │   └── libvorbis.a
+│       │   ├── libs-mingw
+│       │   │   ├── x64
+│       │   │   │   ├── libFLAC.a
+│       │   │   │   ├── libfreetype.a
+│       │   │   │   ├── libogg.a
+│       │   │   │   ├── libopenal32.a
+│       │   │   │   ├── libvorbis.a
+│       │   │   │   ├── libvorbisenc.a
+│       │   │   │   └── libvorbisfile.a
+│       │   │   └── x86
+│       │   │       ├── libFLAC.a
+│       │   │       ├── libfreetype.a
+│       │   │       ├── libogg.a
+│       │   │       ├── libopenal32.a
+│       │   │       ├── libvorbis.a
+│       │   │       ├── libvorbisenc.a
+│       │   │       └── libvorbisfile.a
+│       │   ├── libs-msvc
+│       │   │   ├── x64
+│       │   │   │   ├── flac.lib
+│       │   │   │   ├── freetype.lib
+│       │   │   │   ├── ogg.lib
+│       │   │   │   ├── openal32.lib
+│       │   │   │   ├── vorbisenc.lib
+│       │   │   │   ├── vorbisfile.lib
+│       │   │   │   └── vorbis.lib
+│       │   │   └── x86
+│       │   │       ├── flac.lib
+│       │   │       ├── freetype.lib
+│       │   │       ├── ogg.lib
+│       │   │       ├── openal32.lib
+│       │   │       ├── vorbisenc.lib
+│       │   │       ├── vorbisfile.lib
+│       │   │       └── vorbis.lib
+│       │   ├── libs-msvc-universal
+│       │   │   ├── x64
+│       │   │   │   ├── flac.lib
+│       │   │   │   ├── freetype.lib
+│       │   │   │   ├── ogg.lib
+│       │   │   │   ├── openal32.lib
+│       │   │   │   ├── vorbisenc.lib
+│       │   │   │   ├── vorbisfile.lib
+│       │   │   │   └── vorbis.lib
+│       │   │   └── x86
+│       │   │       ├── flac.lib
+│       │   │       ├── freetype.lib
+│       │   │       ├── ogg.lib
+│       │   │       ├── openal32.lib
+│       │   │       ├── vorbisenc.lib
+│       │   │       ├── vorbisfile.lib
+│       │   │       └── vorbis.lib
+│       │   └── libs-osx
+│       │       └── Frameworks
+│       │           ├── FLAC.framework
+│       │           │   ├── FLAC -> Versions/Current/FLAC
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   └── Versions
+│       │           │       ├── A
+│       │           │       │   ├── FLAC
+│       │           │       │   └── Resources
+│       │           │       │       └── Info.plist
+│       │           │       └── Current -> A
+│       │           ├── freetype.framework
+│       │           │   ├── freetype -> Versions/Current/freetype
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   └── Versions
+│       │           │       ├── A
+│       │           │       │   ├── freetype
+│       │           │       │   └── Resources
+│       │           │       │       └── Info.plist
+│       │           │       └── Current -> A
+│       │           ├── ogg.framework
+│       │           │   ├── ogg -> Versions/Current/ogg
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   └── Versions
+│       │           │       ├── A
+│       │           │       │   ├── ogg
+│       │           │       │   └── Resources
+│       │           │       │       └── Info.plist
+│       │           │       └── Current -> A
+│       │           ├── OpenAL.framework
+│       │           │   ├── OpenAL -> Versions/Current/OpenAL
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   └── Versions
+│       │           │       ├── A
+│       │           │       │   ├── OpenAL
+│       │           │       │   └── Resources
+│       │           │       │       └── Info.plist
+│       │           │       └── Current -> A
+│       │           ├── vorbisenc.framework
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   ├── Versions
+│       │           │   │   ├── A
+│       │           │   │   │   ├── Resources
+│       │           │   │   │   │   └── Info.plist
+│       │           │   │   │   └── vorbisenc
+│       │           │   │   └── Current -> A
+│       │           │   └── vorbisenc -> Versions/Current/vorbisenc
+│       │           ├── vorbisfile.framework
+│       │           │   ├── Resources -> Versions/Current/Resources
+│       │           │   ├── Versions
+│       │           │   │   ├── A
+│       │           │   │   │   ├── Resources
+│       │           │   │   │   │   └── Info.plist
+│       │           │   │   │   └── vorbisfile
+│       │           │   │   └── Current -> A
+│       │           │   └── vorbisfile -> Versions/Current/vorbisfile
+│       │           └── vorbis.framework
+│       │               ├── Resources -> Versions/Current/Resources
+│       │               ├── Versions
+│       │               │   ├── A
+│       │               │   │   ├── Resources
+│       │               │   │   │   └── Info.plist
+│       │               │   │   └── vorbis
+│       │               │   └── Current -> A
+│       │               └── vorbis -> Versions/Current/vorbis
+│       ├── include
+│       │   └── SFML
+│       │       ├── Audio
+│       │       │   ├── AlResource.hpp
+│       │       │   ├── Export.hpp
+│       │       │   ├── InputSoundFile.hpp
+│       │       │   ├── Listener.hpp
+│       │       │   ├── Music.hpp
+│       │       │   ├── OutputSoundFile.hpp
+│       │       │   ├── SoundBuffer.hpp
+│       │       │   ├── SoundBufferRecorder.hpp
+│       │       │   ├── SoundFileFactory.hpp
+│       │       │   ├── SoundFileFactory.inl
+│       │       │   ├── SoundFileReader.hpp
+│       │       │   ├── SoundFileWriter.hpp
+│       │       │   ├── Sound.hpp
+│       │       │   ├── SoundRecorder.hpp
+│       │       │   ├── SoundSource.hpp
+│       │       │   └── SoundStream.hpp
+│       │       ├── Audio.hpp
+│       │       ├── Config.hpp
+│       │       ├── GpuPreference.hpp
+│       │       ├── Graphics
+│       │       │   ├── BlendMode.hpp
+│       │       │   ├── CircleShape.hpp
+│       │       │   ├── Color.hpp
+│       │       │   ├── ConvexShape.hpp
+│       │       │   ├── Drawable.hpp
+│       │       │   ├── Export.hpp
+│       │       │   ├── Font.hpp
+│       │       │   ├── Glsl.hpp
+│       │       │   ├── Glsl.inl
+│       │       │   ├── Glyph.hpp
+│       │       │   ├── Image.hpp
+│       │       │   ├── PrimitiveType.hpp
+│       │       │   ├── RectangleShape.hpp
+│       │       │   ├── Rect.hpp
+│       │       │   ├── Rect.inl
+│       │       │   ├── RenderStates.hpp
+│       │       │   ├── RenderTarget.hpp
+│       │       │   ├── RenderTexture.hpp
+│       │       │   ├── RenderWindow.hpp
+│       │       │   ├── Shader.hpp
+│       │       │   ├── Shape.hpp
+│       │       │   ├── Sprite.hpp
+│       │       │   ├── Text.hpp
+│       │       │   ├── Texture.hpp
+│       │       │   ├── Transformable.hpp
+│       │       │   ├── Transform.hpp
+│       │       │   ├── VertexArray.hpp
+│       │       │   ├── VertexBuffer.hpp
+│       │       │   ├── Vertex.hpp
+│       │       │   └── View.hpp
+│       │       ├── Graphics.hpp
+│       │       ├── Main.hpp
+│       │       ├── Network
+│       │       │   ├── Export.hpp
+│       │       │   ├── Ftp.hpp
+│       │       │   ├── Http.hpp
+│       │       │   ├── IpAddress.hpp
+│       │       │   ├── Packet.hpp
+│       │       │   ├── SocketHandle.hpp
+│       │       │   ├── Socket.hpp
+│       │       │   ├── SocketSelector.hpp
+│       │       │   ├── TcpListener.hpp
+│       │       │   ├── TcpSocket.hpp
+│       │       │   └── UdpSocket.hpp
+│       │       ├── Network.hpp
+│       │       ├── OpenGL.hpp
+│       │       ├── System
+│       │       │   ├── Clock.hpp
+│       │       │   ├── Err.hpp
+│       │       │   ├── Export.hpp
+│       │       │   ├── FileInputStream.hpp
+│       │       │   ├── InputStream.hpp
+│       │       │   ├── Lock.hpp
+│       │       │   ├── MemoryInputStream.hpp
+│       │       │   ├── Mutex.hpp
+│       │       │   ├── NativeActivity.hpp
+│       │       │   ├── NonCopyable.hpp
+│       │       │   ├── Sleep.hpp
+│       │       │   ├── String.hpp
+│       │       │   ├── String.inl
+│       │       │   ├── Thread.hpp
+│       │       │   ├── Thread.inl
+│       │       │   ├── ThreadLocal.hpp
+│       │       │   ├── ThreadLocalPtr.hpp
+│       │       │   ├── ThreadLocalPtr.inl
+│       │       │   ├── Time.hpp
+│       │       │   ├── Utf.hpp
+│       │       │   ├── Utf.inl
+│       │       │   ├── Vector2.hpp
+│       │       │   ├── Vector2.inl
+│       │       │   ├── Vector3.hpp
+│       │       │   └── Vector3.inl
+│       │       ├── System.hpp
+│       │       ├── Window
+│       │       │   ├── Clipboard.hpp
+│       │       │   ├── Context.hpp
+│       │       │   ├── ContextSettings.hpp
+│       │       │   ├── Cursor.hpp
+│       │       │   ├── Event.hpp
+│       │       │   ├── Export.hpp
+│       │       │   ├── GlResource.hpp
+│       │       │   ├── Joystick.hpp
+│       │       │   ├── Keyboard.hpp
+│       │       │   ├── Mouse.hpp
+│       │       │   ├── Sensor.hpp
+│       │       │   ├── Touch.hpp
+│       │       │   ├── VideoMode.hpp
+│       │       │   ├── WindowHandle.hpp
+│       │       │   ├── Window.hpp
+│       │       │   └── WindowStyle.hpp
+│       │       └── Window.hpp
+│       ├── license.md
+│       ├── readme.md
+│       ├── src
+│       │   └── SFML
+│       │       ├── Android.mk
+│       │       ├── Audio
+│       │       │   ├── ALCheck.cpp
+│       │       │   ├── ALCheck.hpp
+│       │       │   ├── AlResource.cpp
+│       │       │   ├── AudioDevice.cpp
+│       │       │   ├── AudioDevice.hpp
+│       │       │   ├── CMakeLists.txt
+│       │       │   ├── InputSoundFile.cpp
+│       │       │   ├── Listener.cpp
+│       │       │   ├── Music.cpp
+│       │       │   ├── OutputSoundFile.cpp
+│       │       │   ├── SoundBuffer.cpp
+│       │       │   ├── SoundBufferRecorder.cpp
+│       │       │   ├── Sound.cpp
+│       │       │   ├── SoundFileFactory.cpp
+│       │       │   ├── SoundFileReaderFlac.cpp
+│       │       │   ├── SoundFileReaderFlac.hpp
+│       │       │   ├── SoundFileReaderOgg.cpp
+│       │       │   ├── SoundFileReaderOgg.hpp
+│       │       │   ├── SoundFileReaderWav.cpp
+│       │       │   ├── SoundFileReaderWav.hpp
+│       │       │   ├── SoundFileWriterFlac.cpp
+│       │       │   ├── SoundFileWriterFlac.hpp
+│       │       │   ├── SoundFileWriterOgg.cpp
+│       │       │   ├── SoundFileWriterOgg.hpp
+│       │       │   ├── SoundFileWriterWav.cpp
+│       │       │   ├── SoundFileWriterWav.hpp
+│       │       │   ├── SoundRecorder.cpp
+│       │       │   ├── SoundSource.cpp
+│       │       │   └── SoundStream.cpp
+│       │       ├── CMakeLists.txt
+│       │       ├── Graphics
+│       │       │   ├── BlendMode.cpp
+│       │       │   ├── CircleShape.cpp
+│       │       │   ├── CMakeLists.txt
+│       │       │   ├── Color.cpp
+│       │       │   ├── ConvexShape.cpp
+│       │       │   ├── Font.cpp
+│       │       │   ├── GLCheck.cpp
+│       │       │   ├── GLCheck.hpp
+│       │       │   ├── GLExtensions.cpp
+│       │       │   ├── GLExtensions.hpp
+│       │       │   ├── GLExtensions.txt
+│       │       │   ├── GLLoader.cpp
+│       │       │   ├── GLLoader.hpp
+│       │       │   ├── Glsl.cpp
+│       │       │   ├── Image.cpp
+│       │       │   ├── ImageLoader.cpp
+│       │       │   ├── ImageLoader.hpp
+│       │       │   ├── RectangleShape.cpp
+│       │       │   ├── RenderStates.cpp
+│       │       │   ├── RenderTarget.cpp
+│       │       │   ├── RenderTexture.cpp
+│       │       │   ├── RenderTextureImpl.cpp
+│       │       │   ├── RenderTextureImplDefault.cpp
+│       │       │   ├── RenderTextureImplDefault.hpp
+│       │       │   ├── RenderTextureImplFBO.cpp
+│       │       │   ├── RenderTextureImplFBO.hpp
+│       │       │   ├── RenderTextureImpl.hpp
+│       │       │   ├── RenderWindow.cpp
+│       │       │   ├── Shader.cpp
+│       │       │   ├── Shape.cpp
+│       │       │   ├── Sprite.cpp
+│       │       │   ├── Text.cpp
+│       │       │   ├── Texture.cpp
+│       │       │   ├── TextureSaver.cpp
+│       │       │   ├── TextureSaver.hpp
+│       │       │   ├── Transformable.cpp
+│       │       │   ├── Transform.cpp
+│       │       │   ├── VertexArray.cpp
+│       │       │   ├── VertexBuffer.cpp
+│       │       │   ├── Vertex.cpp
+│       │       │   └── View.cpp
+│       │       ├── Main
+│       │       │   ├── CMakeLists.txt
+│       │       │   ├── MainAndroid.cpp
+│       │       │   ├── MainiOS.mm
+│       │       │   ├── MainWin32.cpp
+│       │       │   └── SFMLActivity.cpp
+│       │       ├── Network
+│       │       │   ├── CMakeLists.txt
+│       │       │   ├── Ftp.cpp
+│       │       │   ├── Http.cpp
+│       │       │   ├── IpAddress.cpp
+│       │       │   ├── Packet.cpp
+│       │       │   ├── Socket.cpp
+│       │       │   ├── SocketImpl.hpp
+│       │       │   ├── SocketSelector.cpp
+│       │       │   ├── TcpListener.cpp
+│       │       │   ├── TcpSocket.cpp
+│       │       │   ├── UdpSocket.cpp
+│       │       │   ├── Unix
+│       │       │   │   ├── SocketImpl.cpp
+│       │       │   │   └── SocketImpl.hpp
+│       │       │   └── Win32
+│       │       │       ├── SocketImpl.cpp
+│       │       │       └── SocketImpl.hpp
+│       │       ├── System
+│       │       │   ├── Android
+│       │       │   │   ├── Activity.cpp
+│       │       │   │   ├── Activity.hpp
+│       │       │   │   ├── NativeActivity.cpp
+│       │       │   │   ├── ResourceStream.cpp
+│       │       │   │   └── ResourceStream.hpp
+│       │       │   ├── Clock.cpp
+│       │       │   ├── CMakeLists.txt
+│       │       │   ├── Err.cpp
+│       │       │   ├── FileInputStream.cpp
+│       │       │   ├── Lock.cpp
+│       │       │   ├── MemoryInputStream.cpp
+│       │       │   ├── Mutex.cpp
+│       │       │   ├── Sleep.cpp
+│       │       │   ├── String.cpp
+│       │       │   ├── Thread.cpp
+│       │       │   ├── ThreadLocal.cpp
+│       │       │   ├── Time.cpp
+│       │       │   ├── Unix
+│       │       │   │   ├── ClockImpl.cpp
+│       │       │   │   ├── ClockImpl.hpp
+│       │       │   │   ├── MutexImpl.cpp
+│       │       │   │   ├── MutexImpl.hpp
+│       │       │   │   ├── SleepImpl.cpp
+│       │       │   │   ├── SleepImpl.hpp
+│       │       │   │   ├── ThreadImpl.cpp
+│       │       │   │   ├── ThreadImpl.hpp
+│       │       │   │   ├── ThreadLocalImpl.cpp
+│       │       │   │   └── ThreadLocalImpl.hpp
+│       │       │   └── Win32
+│       │       │       ├── ClockImpl.cpp
+│       │       │       ├── ClockImpl.hpp
+│       │       │       ├── MutexImpl.cpp
+│       │       │       ├── MutexImpl.hpp
+│       │       │       ├── SleepImpl.cpp
+│       │       │       ├── SleepImpl.hpp
+│       │       │       ├── ThreadImpl.cpp
+│       │       │       ├── ThreadImpl.hpp
+│       │       │       ├── ThreadLocalImpl.cpp
+│       │       │       └── ThreadLocalImpl.hpp
+│       │       └── Window
+│       │           ├── Android
+│       │           │   ├── ClipboardImpl.cpp
+│       │           │   ├── ClipboardImpl.hpp
+│       │           │   ├── CursorImpl.cpp
+│       │           │   ├── CursorImpl.hpp
+│       │           │   ├── InputImpl.cpp
+│       │           │   ├── InputImpl.hpp
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   ├── JoystickImpl.hpp
+│       │           │   ├── SensorImpl.cpp
+│       │           │   ├── SensorImpl.hpp
+│       │           │   ├── VideoModeImpl.cpp
+│       │           │   ├── WindowImplAndroid.cpp
+│       │           │   └── WindowImplAndroid.hpp
+│       │           ├── Clipboard.cpp
+│       │           ├── ClipboardImpl.hpp
+│       │           ├── CMakeLists.txt
+│       │           ├── Context.cpp
+│       │           ├── Cursor.cpp
+│       │           ├── CursorImpl.hpp
+│       │           ├── EGLCheck.cpp
+│       │           ├── EGLCheck.hpp
+│       │           ├── EglContext.cpp
+│       │           ├── EglContext.hpp
+│       │           ├── FreeBSD
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   └── JoystickImpl.hpp
+│       │           ├── GlContext.cpp
+│       │           ├── GlContext.hpp
+│       │           ├── GlResource.cpp
+│       │           ├── InputImpl.hpp
+│       │           ├── iOS
+│       │           │   ├── ClipboardImpl.hpp
+│       │           │   ├── ClipboardImpl.mm
+│       │           │   ├── CursorImpl.cpp
+│       │           │   ├── CursorImpl.hpp
+│       │           │   ├── EaglContext.hpp
+│       │           │   ├── EaglContext.mm
+│       │           │   ├── InputImpl.hpp
+│       │           │   ├── InputImpl.mm
+│       │           │   ├── JoystickImpl.hpp
+│       │           │   ├── JoystickImpl.mm
+│       │           │   ├── ObjCType.hpp
+│       │           │   ├── SensorImpl.hpp
+│       │           │   ├── SensorImpl.mm
+│       │           │   ├── SFAppDelegate.hpp
+│       │           │   ├── SFAppDelegate.mm
+│       │           │   ├── SFMain.hpp
+│       │           │   ├── SFMain.mm
+│       │           │   ├── SFViewController.hpp
+│       │           │   ├── SFViewController.mm
+│       │           │   ├── SFView.hpp
+│       │           │   ├── SFView.mm
+│       │           │   ├── VideoModeImpl.mm
+│       │           │   ├── WindowImplUIKit.hpp
+│       │           │   └── WindowImplUIKit.mm
+│       │           ├── Joystick.cpp
+│       │           ├── JoystickImpl.hpp
+│       │           ├── JoystickManager.cpp
+│       │           ├── JoystickManager.hpp
+│       │           ├── Keyboard.cpp
+│       │           ├── Mouse.cpp
+│       │           ├── OpenBSD
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   └── JoystickImpl.hpp
+│       │           ├── OSX
+│       │           │   ├── AutoreleasePoolWrapper.h
+│       │           │   ├── AutoreleasePoolWrapper.mm
+│       │           │   ├── cg_sf_conversion.hpp
+│       │           │   ├── cg_sf_conversion.mm
+│       │           │   ├── ClipboardImpl.hpp
+│       │           │   ├── ClipboardImpl.mm
+│       │           │   ├── cpp_objc_conversion.h
+│       │           │   ├── cpp_objc_conversion.mm
+│       │           │   ├── CursorImpl.hpp
+│       │           │   ├── CursorImpl.mm
+│       │           │   ├── HIDInputManager.hpp
+│       │           │   ├── HIDInputManager.mm
+│       │           │   ├── HIDJoystickManager.cpp
+│       │           │   ├── HIDJoystickManager.hpp
+│       │           │   ├── InputImpl.hpp
+│       │           │   ├── InputImpl.mm
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   ├── JoystickImpl.hpp
+│       │           │   ├── NSImage+raw.h
+│       │           │   ├── NSImage+raw.mm
+│       │           │   ├── Scaling.h
+│       │           │   ├── SensorImpl.cpp
+│       │           │   ├── SensorImpl.hpp
+│       │           │   ├── SFApplicationDelegate.h
+│       │           │   ├── SFApplicationDelegate.m
+│       │           │   ├── SFApplication.h
+│       │           │   ├── SFApplication.m
+│       │           │   ├── SFContext.hpp
+│       │           │   ├── SFContext.mm
+│       │           │   ├── SFKeyboardModifiersHelper.h
+│       │           │   ├── SFKeyboardModifiersHelper.mm
+│       │           │   ├── SFOpenGLView.h
+│       │           │   ├── SFOpenGLView+keyboard.mm
+│       │           │   ├── SFOpenGLView+keyboard_priv.h
+│       │           │   ├── SFOpenGLView.mm
+│       │           │   ├── SFOpenGLView+mouse.mm
+│       │           │   ├── SFOpenGLView+mouse_priv.h
+│       │           │   ├── SFSilentResponder.h
+│       │           │   ├── SFSilentResponder.m
+│       │           │   ├── SFViewController.h
+│       │           │   ├── SFViewController.mm
+│       │           │   ├── SFWindowController.h
+│       │           │   ├── SFWindowController.mm
+│       │           │   ├── SFWindow.h
+│       │           │   ├── SFWindow.m
+│       │           │   ├── VideoModeImpl.cpp
+│       │           │   ├── WindowImplCocoa.hpp
+│       │           │   ├── WindowImplCocoa.mm
+│       │           │   └── WindowImplDelegateProtocol.h
+│       │           ├── Sensor.cpp
+│       │           ├── SensorImpl.hpp
+│       │           ├── SensorManager.cpp
+│       │           ├── SensorManager.hpp
+│       │           ├── Touch.cpp
+│       │           ├── Unix
+│       │           │   ├── ClipboardImpl.cpp
+│       │           │   ├── ClipboardImpl.hpp
+│       │           │   ├── CursorImpl.cpp
+│       │           │   ├── CursorImpl.hpp
+│       │           │   ├── Display.cpp
+│       │           │   ├── Display.hpp
+│       │           │   ├── GlxContext.cpp
+│       │           │   ├── GlxContext.hpp
+│       │           │   ├── GlxExtensions.cpp
+│       │           │   ├── GlxExtensions.hpp
+│       │           │   ├── GlxExtensions.txt
+│       │           │   ├── InputImpl.cpp
+│       │           │   ├── InputImpl.hpp
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   ├── JoystickImpl.hpp
+│       │           │   ├── SensorImpl.cpp
+│       │           │   ├── SensorImpl.hpp
+│       │           │   ├── VideoModeImpl.cpp
+│       │           │   ├── WindowImplX11.cpp
+│       │           │   └── WindowImplX11.hpp
+│       │           ├── VideoMode.cpp
+│       │           ├── VideoModeImpl.hpp
+│       │           ├── Win32
+│       │           │   ├── ClipboardImpl.cpp
+│       │           │   ├── ClipboardImpl.hpp
+│       │           │   ├── CursorImpl.cpp
+│       │           │   ├── CursorImpl.hpp
+│       │           │   ├── InputImpl.cpp
+│       │           │   ├── InputImpl.hpp
+│       │           │   ├── JoystickImpl.cpp
+│       │           │   ├── JoystickImpl.hpp
+│       │           │   ├── SensorImpl.cpp
+│       │           │   ├── SensorImpl.hpp
+│       │           │   ├── VideoModeImpl.cpp
+│       │           │   ├── WglContext.cpp
+│       │           │   ├── WglContext.hpp
+│       │           │   ├── WglExtensions.cpp
+│       │           │   ├── WglExtensions.hpp
+│       │           │   ├── WglExtensions.txt
+│       │           │   ├── WindowImplWin32.cpp
+│       │           │   └── WindowImplWin32.hpp
+│       │           ├── Window.cpp
+│       │           ├── WindowImpl.cpp
+│       │           └── WindowImpl.hpp
+│       └── tools
+│           ├── android
+│           │   ├── clean_all.sh
+│           │   ├── compile_arm.sh
+│           │   ├── compile_arm-v7a.sh
+│           │   ├── compile_libs.sh
+│           │   ├── compile_mips.sh
+│           │   ├── compile_x86.sh
+│           │   ├── create_toolchains.sh
+│           │   ├── download_sources.sh
+│           │   ├── make_all.sh
+│           │   ├── patches
+│           │   │   └── remove-so-version-suffix.diff
+│           │   └── readme.txt
+│           ├── pkg-config
+│           │   ├── sfml-all.pc.in
+│           │   ├── sfml-audio.pc.in
+│           │   ├── sfml-graphics.pc.in
+│           │   ├── sfml-network.pc.in
+│           │   ├── sfml-system.pc.in
+│           │   └── sfml-window.pc.in
+│           └── xcode
+│               └── templates
+│                   ├── readme.txt
+│                   └── SFML
+│                       ├── SFML App.xctemplate
+│                       │   ├── cute_image.jpg
+│                       │   ├── icon.png
+│                       │   ├── main.cpp
+│                       │   ├── nice_music.ogg
+│                       │   ├── ResourcePath.hpp
+│                       │   ├── ResourcePath.mm
+│                       │   ├── sansation.ttf
+│                       │   ├── TemplateIcon.icns
+│                       │   └── TemplateInfo.plist.in
+│                       ├── SFML Base.xctemplate
+│                       │   └── TemplateInfo.plist
+│                       ├── SFML Bundle.xctemplate
+│                       │   └── TemplateInfo.plist
+│                       ├── SFML CLT.xctemplate
+│                       │   ├── cute_image.jpg
+│                       │   ├── icon.png
+│                       │   ├── main.cpp
+│                       │   ├── nice_music.ogg
+│                       │   ├── sansation.ttf
+│                       │   ├── TemplateIcon.icns
+│                       │   └── TemplateInfo.plist
+│                       ├── SFML Compiler.xctemplate
+│                       │   └── TemplateInfo.plist.in
+│                       └── SFML Linker.xctemplate
+│                           └── TemplateInfo.plist
+├── LICENSE
+├── README.md
+├── resources
+│   ├── Coursework Specifications.pdf
+│   ├── fonts
+│   │   └── Kenney Future.ttf
+│   ├── sfx
+│   │   └── ui
+│   │       └── click.ogg
+│   └── textures
+│       ├── characters
+│       │   ├── dog.png
+│       │   ├── ghost.png
+│       │   └── human.png
+│       ├── props
+│       │   ├── closed_door.png
+│       │   ├── flowerbed.png
+│       │   ├── grave.png
+│       │   ├── open_door.png
+│       │   └── props.png
+│       ├── tiles
+│       │   ├── grass.png
+│       │   ├── stone.png
+│       │   └── wall.png
+│       └── ui
+│           ├── button.png
+│           └── cursor.png
+├── src
+│   ├── assets
+│   │   ├── Assets.cpp
+│   │   └── Assets.h
+│   ├── levels.cpp
+│   ├── levels.h
+│   ├── main.cpp
+│   ├── scenes
+│   │   ├── CemeteryScene.cpp
+│   │   ├── CemeteryScene.h
+│   │   ├── Level1Scene.cpp
+│   │   ├── Level1Scene.h
+│   │   ├── Level2Scene.cpp
+│   │   ├── Level2Scene.h
+│   │   ├── MenuScene.cpp
+│   │   ├── MenuScene.h
+│   │   ├── PauseScene.cpp
+│   │   ├── PauseScene.h
+│   │   └── Scene.h
+│   └── systems
+│       ├── GameSystem.cpp
+│       └── GameSystem.h
+└── tree.txt
+
+195 directories, 1002 files
