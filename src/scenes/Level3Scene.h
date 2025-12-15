@@ -1,3 +1,4 @@
+// Level3Scene.h
 #pragma once
 
 #include "scenes/Scene.h"
@@ -26,23 +27,33 @@ private:
     void resetLevel();
     void win();
 
+    // visuals / tiles
     sf::Sprite floorTile;
 
+    // player (fallback) + ghost sprite (main visual)
     sf::RectangleShape player;
     sf::Sprite ghostSprite;
     sf::Vector2f playerStart;
     float playerSpeed = 240.f;
 
+    // guards
     std::vector<Guard> guards;
     std::vector<sf::Sprite> guardSprites;
     bool hasGuardTexture = false;
 
+    // key
     sf::RectangleShape key;
     sf::Sprite keySprite;
     bool hasKey = false;
 
+    // objectives
     sf::RectangleShape warehouse;
     bool hasFood = false;
 
     sf::RectangleShape exitZone;
+
+    // texture availability
+    bool hasStoneTexture = false;
+    bool hasGhostTexture = false;
+    bool hasKeyTexture   = false;
 };

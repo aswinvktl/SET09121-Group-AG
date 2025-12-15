@@ -36,11 +36,14 @@ Level3Scene::Level3Scene() {
     key.setPosition({300.f, 150.f});
     key.setFillColor(sf::Color(255, 255, 255, 0));
 
-    keySprite.setTexture(Assets::getTexture("key"));
-    keySprite.setTextureRect({0, 0, 32, 32});
-    keySprite.setOrigin(16.f, 16.f);
-    keySprite.setScale(2.f, 2.f);
-    keySprite.setPosition(key.getPosition());
+    hasKey = false;
+    if (Assets::hasTexture("key")) {
+        keySprite.setTexture(Assets::getTexture("key"));
+        keySprite.setTextureRect({0, 0, 32, 32});
+        keySprite.setOrigin(16.f, 16.f);
+        keySprite.setScale(2.f, 2.f);
+        keySprite.setPosition(key.getPosition());
+    }
 
     warehouse.setSize({140.f, 90.f});
     warehouse.setOrigin(70.f, 45.f);
@@ -58,7 +61,13 @@ Level3Scene::Level3Scene() {
         Guard g;
         g.body.setSize({28.f, 28.f});
         g.body.setOrigin(14.f, 14.f);
-        g.body.setFillColor(sf::Color(255, 255, 255, 0));
+
+        if (hasGuardTexture) {
+            g.body.setFillColor(sf::Color(255, 255, 255, 0));
+        } else {
+            g.body.setFillColor(sf::Color(200, 30, 30, 180));
+        }
+
         g.a = a;
         g.b = b;
         g.dir = normalize(b - a);
@@ -82,7 +91,6 @@ Level3Scene::Level3Scene() {
     makeGuard({320.f, 140.f}, {320.f, 660.f}, 400.f);
     makeGuard({720.f, 140.f}, {720.f, 660.f}, 420.f);
 
-    hasKey = false;
     hasFood = false;
 }
 
@@ -127,10 +135,11 @@ void Level3Scene::update(float dt) {
         g.body.move(g.dir * g.speed * dt);
 
         const sf::Vector2f pos = g.body.getPosition();
-        if ((pos - g.b).x * (pos - g.b).x + (pos - g.b).y * (pos - g.b).y < 100.f)
-            g.dir = normalize(g.a - g.b);
-        else if ((pos - g.a).x * (pos - g.a).x + (pos - g.a).y * (pos - g.a).y < 100.f)
-            g.dir = normalize(g.b - g.a);
+        const sf::Vector2f db = pos - g.b;
+        const sf::Vector2f da = pos - g.a;
+
+        if (db.x * db.x + db.y * db.y < 100.f) g.dir = normalize(g.a - g.b);
+        else if (da.x * da.x + da.y * da.y < 100.f) g.dir = normalize(g.b - g.a);
 
         if (hasGuardTexture && i < guardSprites.size()) {
             guardSprites[i].setPosition(pos);
@@ -157,6 +166,10 @@ void Level3Scene::update(float dt) {
 }
 
 void Level3Scene::render(sf::RenderWindow& window) {
+    sf::RectangleShape bg({1280.f, 720.f});
+    bg.setFillColor(sf::Color(10, 10, 15));
+    window.draw(bg);
+
     for (int y = 0; y < 12; ++y)
         for (int x = 0; x < 20; ++x) {
             floorTile.setPosition(x * 64.f, y * 64.f);
@@ -166,12 +179,10 @@ void Level3Scene::render(sf::RenderWindow& window) {
     if (hasGuardTexture) {
         for (const auto& s : guardSprites) window.draw(s);
     } else {
-        for (const auto& g : guards) {
-            window.draw(g.body);
-        }
+        for (const auto& g : guards) window.draw(g.body);
     }
 
-    if (!hasKey) window.draw(keySprite);
+    if (!hasKey && Assets::hasTexture("key")) window.draw(keySprite);
     if (!hasFood) window.draw(warehouse);
     window.draw(exitZone);
 
@@ -182,6 +193,7 @@ void Level3Scene::handleEvent(sf::Event& event) {
     if (event.type == sf::Event::KeyPressed &&
         event.key.code == sf::Keyboard::Escape) {
         Levels::pausedFrom = Levels::level3;
+        GameSystem::pauseMusic();
         GameSystem::setActiveScene(Levels::pause);
     }
 }
