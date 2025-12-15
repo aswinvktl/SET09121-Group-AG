@@ -1,0 +1,17 @@
+MAIN: entered
+MAIN: sf::Context created
+MAIN: loading textures
+MAIN: textures loaded
+MAIN: creating MenuScene
+MAIN: MenuScene created
+MAIN: creating PauseScene
+MAIN: PauseScene created
+MAIN: creating CemeteryScene
+MAIN: CemeteryScene created
+MAIN: creating Level1Scene
+MAIN: Level1Scene created
+MAIN: creating Level2Scene
+MAIN: Level2Scene created
+MAIN: setActiveScene
+MAIN: calling start
+MAIN: returned from start
