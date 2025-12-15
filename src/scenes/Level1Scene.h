@@ -1,4 +1,5 @@
 #pragma once
+
 #include "scenes/Scene.h"
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -12,9 +13,13 @@ public:
     void handleEvent(sf::Event& event) override;
 
 private:
+    sf::Sprite floorTile;
+
     sf::RectangleShape player;
     sf::Vector2f playerStart;
     float playerSpeed = 220.0f;
+
+    sf::Sprite ghostSprite;
 
     sf::RectangleShape goal;
     std::vector<sf::RectangleShape> pools;
@@ -27,6 +32,9 @@ private:
         float speed;
     };
     std::vector<Dog> dogs;
+
+    bool hasDogTexture = false;
+    std::vector<sf::Sprite> dogSprites;
 
     void resetLevel();
     void win();

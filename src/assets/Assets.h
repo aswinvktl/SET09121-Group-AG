@@ -5,7 +5,13 @@
 
 class Assets {
 public:
+    // rquired assets
     static void loadTexture(const std::string& name, const std::string& path);
+
+    // optional assets 
+    static bool loadTextureSafe(const std::string& name, const std::string& path);
+
+    static bool hasTexture(const std::string& name);
     static const sf::Texture& getTexture(const std::string& name);
 
 private:

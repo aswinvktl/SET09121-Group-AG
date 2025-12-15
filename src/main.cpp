@@ -14,6 +14,11 @@ int main() {
         "ghost",
         "resources/textures/characters/ghost.png"
     );
+    Assets::loadTexture(
+        "tiles_grass",
+        "resources/textures/tiles/tiles_grass.png"
+    );
+
     Levels::cemetery = std::make_shared<CemeteryScene>();
     Levels::level1   = std::make_shared<Level1Scene>();
     Levels::level2   = std::make_shared<Level2Scene>();
