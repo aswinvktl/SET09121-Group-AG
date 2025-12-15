@@ -21,7 +21,7 @@ private:
     float playerSpeed = 220.0f;
 
     float energy = 100.f;
-    float drainRate = 22.f;
+    float drainRate = 12.f;
     bool dead = false;
 
     sf::RectangleShape battery;

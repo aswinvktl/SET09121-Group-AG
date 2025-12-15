@@ -22,6 +22,9 @@ int main() {
     Assets::loadTexture("grass", "resources/textures/tiles/grass.png");
     Assets::loadTexture("stone", "resources/textures/tiles/stone.png");
     Assets::loadTexture("wall",  "resources/textures/tiles/wall.png");
+    Assets::loadTextureSafe("cyborg",   "resources/textures/characters/cyborg.png");
+    Assets::loadTextureSafe("mechanic", "resources/textures/characters/mechanic.png");
+    Assets::loadTextureSafe("charger",  "resources/textures/props/charger.png");
 
     // ------------------------
     // Optional UI / props
